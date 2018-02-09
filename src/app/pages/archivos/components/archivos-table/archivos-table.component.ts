@@ -1,0 +1,112 @@
+import { Router, ActivatedRoute } from '@angular/router';
+import { DialogService } from 'ng2-bootstrap-modal';
+import { ToastrService } from 'ngx-toastr';
+import { ArchivosInterface } from './archivos.interface';
+import { ArchivosResponseInterface } from './archivos-response.interface';
+import { Component, OnInit } from '@angular/core';
+import { ArchivosService } from './archivos.service';
+import { ArchivosAddModalComponent } from './archivos-add-modal/archivos-add-modal.component';
+import { ArchivosEditModalComponent } from './archivos-edit-modal/archivos-edit-modal.component';
+
+@Component({
+selector: 'archivos-table',
+templateUrl: './archivos-table.html',
+styleUrls: ['./archivos-table.scss'],
+})
+export class ArchivosTableComponent implements OnInit {
+    data;
+    filterQuery = '';
+    rowsOnPage = 10;
+    sortBy = 'idarchivo';
+    sortOrder = 'asc';
+    backpage: boolean;
+
+    constructor(
+      private service: ArchivosService, 
+      private toastrService: ToastrService, 
+      private dialogService: DialogService, 
+      private route: ActivatedRoute, 
+      private router: Router) {
+    }
+    ngOnInit() {
+      this.route.params.subscribe(params => {
+        if (params['idordentarea'] !== undefined) {
+          const idordentarea = +params['idordentarea'];
+          this.findByIdOrdentarea(idordentarea);
+          this.backpage = true;
+        }
+        if (!this.backpage) {
+          this.getAll();
+        }
+      });
+    }
+    private findByIdOrdentarea(id: number): void {
+      this.service
+        .findByIdOrdentarea(id)
+        .subscribe(
+            (data: ArchivosResponseInterface) => {
+                if (data.success) {
+                this.data = data.result;
+                } else {
+                this.toastrService.error(data.message);
+                }
+            },
+            error => console.log(error),
+            () => console.log('Get all Items complete'))
+    }
+    backPage() {
+        window.history.back();
+    }
+    addModalShow() {
+      const disposable = this.dialogService.addDialog(ArchivosAddModalComponent)
+      .subscribe( data => {
+          if (data) {
+          this.showToast(data);
+          }
+      });
+    }
+    editModalShow(archivos: ArchivosInterface) {
+      const disposable = this.dialogService.addDialog(ArchivosEditModalComponent, archivos)
+      .subscribe( data => {
+          if (data) {
+          this.showToast(data);
+          }
+      },
+      error => console.log(error),
+      () => console.log('Modified complete'));
+    }
+    onDeleteConfirm(event, item): void {
+      if (window.confirm('¿Estas seguro de querer eliminar este registro?')) {
+          this.service.remove(item.idarchivo)
+          .subscribe(
+              (data) => this.showToast(data),
+              error => console.log(error),
+              () => console.log('Delete completed')
+          );
+      } else {
+          console.log('item cancelado');
+      }
+    }
+    showToast(result) {
+      if (result.success) {
+        this.toastrService.success(result.message);
+        this.getAll();
+      } else {
+        this.toastrService.error(result.message);
+      }
+    }
+    private getAll(): void {
+      this.service
+        .all()
+        .subscribe(
+            (data: ArchivosResponseInterface) =>  {
+                if (data.success) {
+                  this.data = data.result;
+                } else {
+                  this.toastrService.error(data.message);
+                }
+            },
+            error => console.log(error),
+            () => console.log('Get all Items complete'))
+    } 
+  }
