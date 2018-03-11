@@ -39,8 +39,8 @@ export class ArchivosEditModalComponent extends DialogComponent<ArchivosInterfac
   super(dialogService);
   this.form = fb.group({
     'ordentarea_idordentareaAC' : ['',Validators.compose([Validators.required,Validators.maxLength(11)])],
-    'urlAC' : ['',Validators.compose([Validators.required,Validators.maxLength(55)])],
-    'tipoAC' : ['',Validators.compose([Validators.required,Validators.maxLength(15)])],
+    'urlAC' : ['',Validators.compose([Validators.required,Validators.maxLength(255)])],
+    'tipoAC' : ['',Validators.compose([Validators.required,Validators.maxLength(65)])],
   });
   this.ordentarea_idordentareaAC = this.form.controls['ordentarea_idordentareaAC'];
   this.urlAC = this.form.controls['urlAC'];

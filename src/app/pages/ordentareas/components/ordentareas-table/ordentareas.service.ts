@@ -24,6 +24,20 @@ export class OrdentareasService {
         this.options = new RequestOptions({ headers: this.headers });
         this.endPoint = `${this._configuration.ServerWithApiUrl}ordentarea`;
        }
+       
+
+       findByIdEmpleadotarea = ( id ) : Observable<OrdentareasResponseInterface> => {
+           return this._http.get(`${this.endPoint}/empleadotarea/${id}`, this.options)
+               .map((response: Response) => response.json())
+               .catch(this.handleError);
+       }
+
+
+       getTiempoEstimado = ( tareatiempoinicio: any ) : Observable<OrdentareasResponseInterface> => {
+           return this._http.post(`${this.endPoint}/tarea-tiempo-estimado`, tareatiempoinicio, this.options)
+               .map((response: Response) => response.json())
+               .catch(this.handleError);
+       }
        findByIdTarea = ( id ) : Observable<OrdentareasResponseInterface> => {
            return this._http.get(`${this.endPoint}/tarea/${id}`, this.options)
                .map((response: Response) => response.json())

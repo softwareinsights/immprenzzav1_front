@@ -15,7 +15,7 @@
               <label for="inputorden_idordenAC" class="col-sm-3 form-control-label">Número de Orden</label>
               <div class="col-sm-7">
                <select [(ngModel)]="orden_idorden" [formControl]="orden_idordenAC" class="form-control" id="inputorden_idordenAC" required>
-                 <option value="{{item.idorden}}" *ngFor="let item of _orden">{{item.idorden}}</option>
+                 <option value="{{item.idorden}}" *ngFor="let item of _orden">{{item.idorden}} - {{item.cliente_cliente_idcliente}}</option>
                </select>
               </div>
               <div class='col-sm-2'>

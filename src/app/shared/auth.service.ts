@@ -84,22 +84,24 @@ export class AuthService {
                         });
                     });
                     this.user_modules = modules;
+                    
+                    // IMPLEMENTADO PARA CHANGE-PASSWORD
+                    localStorage.setItem('iduser', response.iduser);
+                    localStorage.setItem('email', response.email);
 
                     localStorage.setItem('token', response.token);
                     if (values.recordarSesion) {
                         localStorage.setItem('isLoggedIn', 'true');
                         localStorage.setItem('user_modules', JSON.stringify(modules));
                     }
-                    this.toastrService.success(response.message);
+                    
                     // Regresa a página anterior si viene de otra página o a dashboard
                     if (this.redirectUrl !== undefined) {
                         this.router.navigateByUrl(this.redirectUrl);
                     } else {
                         this.router.navigate(['pages/dashboard']);
                     }
-                } else {
-                    this.toastrService.error(response.message);
-                }
+                } 
             });
     }
 
@@ -107,6 +109,7 @@ export class AuthService {
         this.isLoggedIn = false;
         this.user_modules = [];
         if (this.recordarSesion) {
+            localStorage.removeItem('user');
             localStorage.removeItem('isLoggedIn');
             localStorage.removeItem('token');
             localStorage.removeItem('user_modules');
@@ -168,5 +171,6 @@ export class AuthService {
         console.error(error);
         return Observable.throw(error.json().error || 'Server error');
     }
+
 
 }

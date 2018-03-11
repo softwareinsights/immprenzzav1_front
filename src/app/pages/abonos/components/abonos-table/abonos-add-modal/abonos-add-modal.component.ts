@@ -62,14 +62,9 @@ export class AbonosAddModalComponent extends DialogComponent<AbonosInterface, an
       this.getOrden();
 
         // FECHA Y HORA ACTUAL
-        const date = new Date();
-        const month = (date.getMonth() + 1);
-        const day = date.getDate();
-        const now = (date.getFullYear() + "-" + ((month < 10) ? "0" : "") + month + "-" + (day < 10) ? "0" : "") + day;
-        const hour = date.getHours() + ":" + date.getMinutes();
-
-        this.fecha = now;
-        this.hora = hour;
+        const date = this.authLocalstorage.getCurrentDateAndHour();
+        this.fecha = date.fecha;
+        this.hora = date.hora;
   }
 
   

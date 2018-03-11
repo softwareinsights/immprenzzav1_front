@@ -1,3 +1,4 @@
+import { TareasInterface } from './../../../../tareas/components/tareas-table/tareas.interface';
 import { DialogComponent, DialogService } from 'ng2-bootstrap-modal';
 import { AuthLocalstorage } from './../../../../../shared/auth-localstorage.service';
 import { OrdentareasService } from './../ordentareas.service';
@@ -24,8 +25,6 @@ export class OrdentareasAddModalComponent extends DialogComponent<OrdentareasInt
   especificaciones: string;
   fechaInicio: string;
   horaInicio: string;
-  fechaTermina: string;
-  horaTermina: string;
   fechaEstimada: string;
   horaEstimada: string;
 
@@ -38,8 +37,6 @@ export class OrdentareasAddModalComponent extends DialogComponent<OrdentareasInt
   especificacionesAC: AbstractControl;
   fechaInicioAC: AbstractControl;
   horaInicioAC: AbstractControl;
-  fechaTerminaAC: AbstractControl;
-  horaTerminaAC: AbstractControl;
   fechaEstimadaAC: AbstractControl;
   horaEstimadaAC: AbstractControl;
 
@@ -59,8 +56,6 @@ export class OrdentareasAddModalComponent extends DialogComponent<OrdentareasInt
     'especificacionesAC' : ['',Validators.compose([Validators.maxLength(245)])],
     'fechaInicioAC' : [''],
     'horaInicioAC' : [''],
-    'fechaTerminaAC' : [''],
-    'horaTerminaAC' : [''],
     'fechaEstimadaAC' : [''],
     'horaEstimadaAC' : [''],
     });
@@ -69,15 +64,33 @@ export class OrdentareasAddModalComponent extends DialogComponent<OrdentareasInt
     this.especificacionesAC = this.form.controls['especificacionesAC'];
     this.fechaInicioAC = this.form.controls['fechaInicioAC'];
     this.horaInicioAC = this.form.controls['horaInicioAC'];
-    this.fechaTerminaAC = this.form.controls['fechaTerminaAC'];
-    this.horaTerminaAC = this.form.controls['horaTerminaAC'];
     this.fechaEstimadaAC = this.form.controls['fechaEstimadaAC'];
     this.horaEstimadaAC = this.form.controls['horaEstimadaAC'];
   }
   ngOnInit() {
       this.getTarea();
       this.getOrdenproducto();
+
+        // FECHA Y HORA ACTUAL
+        const fechahora = this.authLocalstorage.getCurrentDateAndHour();
+        this.fechaInicio = fechahora.fecha;
+        this.horaInicio = fechahora.hora;
   }
+
+  calcularEstimada() {
+      const tareatiempoinicio = {
+          idtarea: this.tarea_idtarea, 
+          fechaInicio: this.fechaInicio, 
+          horaInicio: this.horaInicio,
+      };
+
+      this.service.getTiempoEstimado(tareatiempoinicio)
+        .subscribe(data => {
+            this.fechaEstimada = data.result.fechaEstimada;
+            this.horaEstimada = data.result.horaEstimada;
+        });
+  }
+
   tareaAddModalShow() {
       const disposable = this.dialogService.addDialog(TareasAddModalComponent)
       .subscribe( data => {
@@ -111,7 +124,7 @@ export class OrdentareasAddModalComponent extends DialogComponent<OrdentareasInt
       }
   }
   getTarea() {
-      this.tareasService.all()
+      this.tareasService.allByAreaWithIdOrdenProducto(this.ordenproducto_idordenproducto)
       .subscribe(
           (data: any) => this._tarea = data.result,
       );
@@ -136,8 +149,6 @@ export class OrdentareasAddModalComponent extends DialogComponent<OrdentareasInt
                   especificaciones: this.especificaciones,
                   fechaInicio: this.fechaInicio,
                   horaInicio: this.horaInicio,
-                  fechaTermina: this.fechaTermina,
-                  horaTermina: this.horaTermina,
                   fechaEstimada: this.fechaEstimada,
                   horaEstimada: this.horaEstimada,
         })

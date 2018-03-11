@@ -31,6 +31,7 @@ export class OrdensEditModalComponent extends DialogComponent<OrdensInterface, a
   abonado: number;
   adeudo: number;
   factura: boolean;
+  comentarios: string;
 
   modalHeader: string;
   data: any;
@@ -52,6 +53,7 @@ export class OrdensEditModalComponent extends DialogComponent<OrdensInterface, a
   abonadoAC: AbstractControl;
   adeudoAC: AbstractControl;
   facturaAC: AbstractControl;
+  comentariosAC: AbstractControl;
   constructor(
       private service: OrdensService,
       private clientesService: ClientesService,
@@ -77,6 +79,7 @@ export class OrdensEditModalComponent extends DialogComponent<OrdensInterface, a
     'abonadoAC' : [''],
     'adeudoAC' : [''],
     'facturaAC' : [''],
+    'comentariosAC' : [''],
   });
   this.cliente_idclienteAC = this.form.controls['cliente_idclienteAC'];
   this.fechaAC = this.form.controls['fechaAC'];
@@ -93,6 +96,7 @@ export class OrdensEditModalComponent extends DialogComponent<OrdensInterface, a
   this.abonadoAC = this.form.controls['abonadoAC'];
   this.adeudoAC = this.form.controls['adeudoAC'];
   this.facturaAC = this.form.controls['facturaAC'];
+  this.comentariosAC = this.form.controls['comentariosAC'];
   }
   ngOnInit() {
       this.getCliente();
@@ -146,6 +150,7 @@ export class OrdensEditModalComponent extends DialogComponent<OrdensInterface, a
                   abonado: this.abonado,
                   adeudo: this.adeudo,
                   factura: this.factura,
+                  comentarios: this.comentarios,
               })
               .subscribe(
                   (data: any) => {

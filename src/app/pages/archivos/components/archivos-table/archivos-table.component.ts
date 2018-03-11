@@ -44,11 +44,32 @@ export class ArchivosTableComponent implements OnInit {
       this.service
         .findByIdOrdentarea(id)
         .subscribe(
-            (data: ArchivosResponseInterface) => {
-                if (data.success) {
-                this.data = data.result;
+            (_data: ArchivosResponseInterface) => {
+                if (_data.success) {
+
+                  const array = [];
+                  _data.result.forEach(element => {
+                    if (element.tipo === 'application/pdf') {
+                      element.imagen = 'assets/img/pdf.png';
+                    } else if (element.tipo === 'application/xml') {
+                      element.imagen = 'assets/img/xml.png';
+                    } else if (element.tipo === 'image/jpeg') {
+                      element.imagen = element.url;
+                    } else if (element.tipo === 'image/png') {
+                      element.imagen = element.url;
+                    } else if (element.tipo === 'image/gif') {
+                      element.imagen = element.url;
+                    } else if (element.tipo === 'application/vnd.openxmlformats-officedocument.pres') {
+                      element.imagen = 'assets/images/powerpoint.png';
+                    } else {
+                      element.imagen = 'assets/images/file.png';
+                    }
+                    array.push(element);
+                  });
+                  this.data = array;
+
                 } else {
-                this.toastrService.error(data.message);
+                this.toastrService.error(_data.message);
                 }
             },
             error => console.log(error),
@@ -99,14 +120,37 @@ export class ArchivosTableComponent implements OnInit {
       this.service
         .all()
         .subscribe(
-            (data: ArchivosResponseInterface) =>  {
-                if (data.success) {
-                  this.data = data.result;
+            (_data: ArchivosResponseInterface) => {
+                if (_data.success) {
+
+                  const array = [];
+                  _data.result.forEach(element => {
+                    if (element.tipo === 'application/pdf') {
+                      element.imagen = 'assets/img/pdf.png';
+                    } else if (element.tipo === 'application/xml') {
+                      element.imagen = 'assets/img/xml.png';
+                    } else if (element.tipo === 'image/jpeg') {
+                      element.imagen = element.url;
+                    } else if (element.tipo === 'image/png') {
+                      element.imagen = element.url;
+                    } else if (element.tipo === 'image/gif') {
+                      element.imagen = element.url;
+                    } else if (element.tipo === 'application/vnd.openxmlformats-officedocument.pres') {
+                      element.imagen = 'assets/images/powerpoint.png';
+                    } else {
+                      element.imagen = 'assets/images/file.png';
+                    }
+                    array.push(element);
+                  });
+                  this.data = array;
+
                 } else {
-                  this.toastrService.error(data.message);
+                  this.toastrService.error(_data.message);
                 }
             },
             error => console.log(error),
             () => console.log('Get all Items complete'))
     } 
   }
+
+

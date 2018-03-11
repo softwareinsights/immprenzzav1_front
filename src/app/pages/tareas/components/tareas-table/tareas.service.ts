@@ -24,6 +24,12 @@ export class TareasService {
         this.options = new RequestOptions({ headers: this.headers });
         this.endPoint = `${this._configuration.ServerWithApiUrl}tarea`;
        }
+
+       allByAreaWithIdOrdenProducto = (idordenproducto) : Observable<TareasResponseInterface> => {
+           return this._http.get(`${this.endPoint}/ordenproducto/${idordenproducto}`, this.options)
+               .map((response: Response) => response.json())
+               .catch(this.handleError);
+       }
        findByIdArea = ( id ) : Observable<TareasResponseInterface> => {
            return this._http.get(`${this.endPoint}/area/${id}`, this.options)
                .map((response: Response) => response.json())

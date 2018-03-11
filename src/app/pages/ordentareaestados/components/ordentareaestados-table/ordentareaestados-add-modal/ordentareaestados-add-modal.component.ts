@@ -57,6 +57,12 @@ export class OrdentareaestadosAddModalComponent extends DialogComponent<Ordentar
   ngOnInit() {
       this.getOrdentarea();
       this.getEstadoscrum();
+      
+    // FECHA Y HORA ACTUAL
+    const date = this.authLocalstorage.getCurrentDateAndHour();
+    this.fecha = date.fecha;
+    this.hora = date.hora;
+
   }
   ordentareaAddModalShow() {
       const disposable = this.dialogService.addDialog(OrdentareasAddModalComponent)

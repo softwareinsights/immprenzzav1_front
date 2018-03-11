@@ -41,16 +41,16 @@
                     <tbody>
                         <tr *ngFor='let item of mf.data;  let i = index'>
                             <td>
-                                <button title='Agregar Orden Tarea' (click)='insertOrdentarea(item)' class='btn btn-sm btn-success'><i class='fa fa-plus'></i></button>
-                                <button title='Ver Orden Tarea' (click)='viewOrdentarea(item)' class='btn btn-sm btn-warning'><i class='fa fa-eye'></i></button>
+                                <!--<button title='Agregar Orden Tarea' (click)='insertOrdentarea(item)' class='btn btn-sm btn-success'><i class='fa fa-plus'></i> Asignar Tarea a Orden</button>-->
+                                <button title='Ver Orden Tarea' (click)='viewOrdentarea(item)' class='btn btn-sm btn-warning'><i class='fa fa-eye'></i> Ver Órdenes Asignadas a Tarea</button>
                                 <button title='Editar Registro' (click)='editModalShow(item)' class='btn btn-sm btn-info'><i class='fa fa-edit'></i></button>
                                 <button title='Eliminar Registro' (click)='onDeleteConfirm($event, item)' class='btn btn-sm btn-danger'><i class='fa fa-trash'></i></button>
                             </td>
                             <td>{{ item.producto_producto_idproducto }}</td>
                             <td>{{ item.area_area_idarea }}</td>
-                            <td>{{ item.nombre  }}</td>
-                            <td>{{ item.duracionEstimada  }}</td>
-                            <td>{{ item.costoEstimado  }}</td>
+                            <td>{{ item.nombre }}</td>
+                            <td>{{ item.duracionEstimada }}</td>
+                            <td>{{ item.costoEstimado }}</td>
                         </tr>
                     </tbody>
                     <tfoot>

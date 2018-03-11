@@ -1,4 +1,11 @@
 import { AbonosService } from './pages/abonos/components/abonos-table/abonos.service';
+import { AccuracyestimacionsService } from './pages/accuracyestimacions/components/accuracyestimacions-table/accuracyestimacions.service';
+import { AccuracytiemposService } from './pages/accuracytiempos/components/accuracytiempos-table/accuracytiempos.service';
+import { AccuracyestimacionsAddModalComponent } from './pages/accuracyestimacions/components/accuracyestimacions-table/accuracyestimacions-add-modal/accuracyestimacions-add-modal.component';
+import { AccuracytiemposAddModalComponent } from './pages/accuracytiempos/components/accuracytiempos-table/accuracytiempos-add-modal/accuracytiempos-add-modal.component';
+import { AccuracyestimacionsEditModalComponent } from './pages/accuracyestimacions/components/accuracyestimacions-table/accuracyestimacions-edit-modal/accuracyestimacions-edit-modal.component';
+import { AccuracytiemposEditModalComponent } from './pages/accuracytiempos/components/accuracytiempos-table/accuracytiempos-edit-modal/accuracytiempos-edit-modal.component';
+
 import { AlertasService } from './pages/alertas/components/alertas-table/alertas.service';
 import { ArchivosService } from './pages/archivos/components/archivos-table/archivos.service';
 import { AreasService } from './pages/areas/components/areas-table/areas.service';
@@ -21,12 +28,14 @@ import { OrdentareasService } from './pages/ordentareas/components/ordentareas-t
 import { OrdentareaestadosService } from './pages/ordentareaestados/components/ordentareaestados-table/ordentareaestados.service';
 import { PersonasService } from './pages/personas/components/personas-table/personas.service';
 import { ProductosService } from './pages/productos/components/productos-table/productos.service';
+import { SalidastocksService } from './pages/salidastocks/components/salidastocks-table/salidastocks.service';
 import { SexosService } from './pages/sexos/components/sexos-table/sexos.service';
 import { Si_modulosService } from './pages/si_modulos/components/si_modulos-table/si_modulos.service';
 import { Si_permisosService } from './pages/si_permisos/components/si_permisos-table/si_permisos.service';
 import { Si_reportesService } from './pages/si_reportes/components/si_reportes-table/si_reportes.service';
 import { Si_rolsService } from './pages/si_rols/components/si_rols-table/si_rols.service';
 import { Si_usersService } from './pages/si_users/components/si_users-table/si_users.service';
+import { StocksService } from './pages/stocks/components/stocks-table/stocks.service';
 import { TareasService } from './pages/tareas/components/tareas-table/tareas.service';
 import { TipoalertasService } from './pages/tipoalertas/components/tipoalertas-table/tipoalertas.service';
 import { TipopreciosService } from './pages/tipoprecios/components/tipoprecios-table/tipoprecios.service';
@@ -53,12 +62,14 @@ import { OrdentareasAddModalComponent } from './pages/ordentareas/components/ord
 import { OrdentareaestadosAddModalComponent } from './pages/ordentareaestados/components/ordentareaestados-table/ordentareaestados-add-modal/ordentareaestados-add-modal.component';
 import { PersonasAddModalComponent } from './pages/personas/components/personas-table/personas-add-modal/personas-add-modal.component';
 import { ProductosAddModalComponent } from './pages/productos/components/productos-table/productos-add-modal/productos-add-modal.component';
+import { SalidastocksAddModalComponent } from './pages/salidastocks/components/salidastocks-table/salidastocks-add-modal/salidastocks-add-modal.component';
 import { SexosAddModalComponent } from './pages/sexos/components/sexos-table/sexos-add-modal/sexos-add-modal.component';
 import { Si_modulosAddModalComponent } from './pages/si_modulos/components/si_modulos-table/si_modulos-add-modal/si_modulos-add-modal.component';
 import { Si_permisosAddModalComponent } from './pages/si_permisos/components/si_permisos-table/si_permisos-add-modal/si_permisos-add-modal.component';
 import { Si_reportesAddModalComponent } from './pages/si_reportes/components/si_reportes-table/si_reportes-add-modal/si_reportes-add-modal.component';
 import { Si_rolsAddModalComponent } from './pages/si_rols/components/si_rols-table/si_rols-add-modal/si_rols-add-modal.component';
 import { Si_usersAddModalComponent } from './pages/si_users/components/si_users-table/si_users-add-modal/si_users-add-modal.component';
+import { StocksAddModalComponent } from './pages/stocks/components/stocks-table/stocks-add-modal/stocks-add-modal.component';
 import { TareasAddModalComponent } from './pages/tareas/components/tareas-table/tareas-add-modal/tareas-add-modal.component';
 import { TipoalertasAddModalComponent } from './pages/tipoalertas/components/tipoalertas-table/tipoalertas-add-modal/tipoalertas-add-modal.component';
 import { TipopreciosAddModalComponent } from './pages/tipoprecios/components/tipoprecios-table/tipoprecios-add-modal/tipoprecios-add-modal.component';
@@ -85,12 +96,14 @@ import { OrdentareasEditModalComponent } from './pages/ordentareas/components/or
 import { OrdentareaestadosEditModalComponent } from './pages/ordentareaestados/components/ordentareaestados-table/ordentareaestados-edit-modal/ordentareaestados-edit-modal.component';
 import { PersonasEditModalComponent } from './pages/personas/components/personas-table/personas-edit-modal/personas-edit-modal.component';
 import { ProductosEditModalComponent } from './pages/productos/components/productos-table/productos-edit-modal/productos-edit-modal.component';
+import { SalidastocksEditModalComponent } from './pages/salidastocks/components/salidastocks-table/salidastocks-edit-modal/salidastocks-edit-modal.component';
 import { SexosEditModalComponent } from './pages/sexos/components/sexos-table/sexos-edit-modal/sexos-edit-modal.component';
 import { Si_modulosEditModalComponent } from './pages/si_modulos/components/si_modulos-table/si_modulos-edit-modal/si_modulos-edit-modal.component';
 import { Si_permisosEditModalComponent } from './pages/si_permisos/components/si_permisos-table/si_permisos-edit-modal/si_permisos-edit-modal.component';
 import { Si_reportesEditModalComponent } from './pages/si_reportes/components/si_reportes-table/si_reportes-edit-modal/si_reportes-edit-modal.component';
 import { Si_rolsEditModalComponent } from './pages/si_rols/components/si_rols-table/si_rols-edit-modal/si_rols-edit-modal.component';
 import { Si_usersEditModalComponent } from './pages/si_users/components/si_users-table/si_users-edit-modal/si_users-edit-modal.component';
+import { StocksEditModalComponent } from './pages/stocks/components/stocks-table/stocks-edit-modal/stocks-edit-modal.component';
 import { TareasEditModalComponent } from './pages/tareas/components/tareas-table/tareas-edit-modal/tareas-edit-modal.component';
 import { TipoalertasEditModalComponent } from './pages/tipoalertas/components/tipoalertas-table/tipoalertas-edit-modal/tipoalertas-edit-modal.component';
 import { TipopreciosEditModalComponent } from './pages/tipoprecios/components/tipoprecios-table/tipoprecios-edit-modal/tipoprecios-edit-modal.component';
@@ -159,6 +172,8 @@ bootstrap: [App],
 declarations: [
     App,
     AbonosAddModalComponent,
+    AccuracyestimacionsAddModalComponent,
+    AccuracytiemposAddModalComponent,
     AlertasAddModalComponent,
     ArchivosAddModalComponent,
     AreasAddModalComponent,
@@ -181,16 +196,20 @@ declarations: [
     OrdentareaestadosAddModalComponent,
     PersonasAddModalComponent,
     ProductosAddModalComponent,
+    SalidastocksAddModalComponent,
     SexosAddModalComponent,
     Si_modulosAddModalComponent,
     Si_permisosAddModalComponent,
     Si_reportesAddModalComponent,
     Si_rolsAddModalComponent,
     Si_usersAddModalComponent,
+    StocksAddModalComponent,
     TareasAddModalComponent,
     TipoalertasAddModalComponent,
     TipopreciosAddModalComponent,
     AbonosEditModalComponent,
+    AccuracyestimacionsEditModalComponent,
+    AccuracytiemposEditModalComponent,
     AlertasEditModalComponent,
     ArchivosEditModalComponent,
     AreasEditModalComponent,
@@ -213,12 +232,14 @@ declarations: [
     OrdentareaestadosEditModalComponent,
     PersonasEditModalComponent,
     ProductosEditModalComponent,
+    SalidastocksEditModalComponent,
     SexosEditModalComponent,
     Si_modulosEditModalComponent,
     Si_permisosEditModalComponent,
     Si_reportesEditModalComponent,
     Si_rolsEditModalComponent,
     Si_usersEditModalComponent,
+    StocksEditModalComponent,
     TareasEditModalComponent,
     TipoalertasEditModalComponent,
     TipopreciosEditModalComponent,
@@ -238,13 +259,15 @@ imports: [ // import Angular's modules
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(), // ToastrModule added,
     LocalStorageModule.withConfig({
-        prefix: 'manyimmprenzza8_5a79be6ae9a41',
+        prefix: 'immprenzzaconstock_5a7de20901ddf',
         storageType: 'localStorage',
     }),
     BootstrapModalModule.forRoot({ container: document.body }),
 ],
 entryComponents: [
     AbonosAddModalComponent,
+    AccuracyestimacionsAddModalComponent,
+    AccuracytiemposAddModalComponent,
     AlertasAddModalComponent,
     ArchivosAddModalComponent,
     AreasAddModalComponent,
@@ -267,16 +290,20 @@ entryComponents: [
     OrdentareaestadosAddModalComponent,
     PersonasAddModalComponent,
     ProductosAddModalComponent,
+    SalidastocksAddModalComponent,
     SexosAddModalComponent,
     Si_modulosAddModalComponent,
     Si_permisosAddModalComponent,
     Si_reportesAddModalComponent,
     Si_rolsAddModalComponent,
     Si_usersAddModalComponent,
+    StocksAddModalComponent,
     TareasAddModalComponent,
     TipoalertasAddModalComponent,
     TipopreciosAddModalComponent,
     AbonosEditModalComponent,
+    AccuracyestimacionsEditModalComponent,
+    AccuracytiemposEditModalComponent,
     AlertasEditModalComponent,
     ArchivosEditModalComponent,
     AreasEditModalComponent,
@@ -299,12 +326,14 @@ entryComponents: [
     OrdentareaestadosEditModalComponent,
     PersonasEditModalComponent,
     ProductosEditModalComponent,
+    SalidastocksEditModalComponent,
     SexosEditModalComponent,
     Si_modulosEditModalComponent,
     Si_permisosEditModalComponent,
     Si_reportesEditModalComponent,
     Si_rolsEditModalComponent,
     Si_usersEditModalComponent,
+    StocksEditModalComponent,
     TareasEditModalComponent,
     TipoalertasEditModalComponent,
     TipopreciosEditModalComponent,
@@ -324,6 +353,8 @@ providers: [ // expose our Services and Providers into Angular's dependency inje
       deps: [Http, RequestOptions]
     },
     AbonosService,
+    AccuracyestimacionsService,
+    AccuracytiemposService,
     AlertasService,
     ArchivosService,
     AreasService,
@@ -346,12 +377,14 @@ providers: [ // expose our Services and Providers into Angular's dependency inje
     OrdentareaestadosService,
     PersonasService,
     ProductosService,
+    SalidastocksService,
     SexosService,
     Si_modulosService,
     Si_permisosService,
     Si_reportesService,
     Si_rolsService,
     Si_usersService,
+    StocksService,
     TareasService,
     TipoalertasService,
     TipopreciosService,

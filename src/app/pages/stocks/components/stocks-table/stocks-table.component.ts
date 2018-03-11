@@ -47,6 +47,7 @@ export class StocksTableComponent implements OnInit {
     salidastockShowToast(result) {
         if (result.success) {
             this.toastrService.success(result.message);
+            this.getAll();
         } else {
             this.toastrService.error(result.message);
         }

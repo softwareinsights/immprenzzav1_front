@@ -29,15 +29,9 @@
               </div>
             </div>
             <div class="form-group row" [ngClass]="{'has-error': (!horaEntraAC.valid && horaEntraAC.touched), 'has-success': (horaEntraAC.valid && horaEntraAC.touched)}">
-              <label for="inputhoraEntraAC" class="col-sm-3 form-control-label">Hora de Entrada</label>
+              <label for="inputhoraEntraAC" class="col-sm-3 form-control-label">Hora Registrada</label>
               <div class="col-sm-9">
                 <input [(ngModel)]="horaEntra" [formControl]="horaEntraAC" type="time"  class="form-control" id="inputhoraEntraAC" placeholder="Hora de Entrada" >
-              </div>
-            </div>
-            <div class="form-group row" [ngClass]="{'has-error': (!horaSaleAC.valid && horaSaleAC.touched), 'has-success': (horaSaleAC.valid && horaSaleAC.touched)}">
-              <label for="inputhoraSaleAC" class="col-sm-3 form-control-label">Hora de Salida</label>
-              <div class="col-sm-9">
-                <input [(ngModel)]="horaSale" [formControl]="horaSaleAC" type="time"  class="form-control" id="inputhoraSaleAC" placeholder="Hora de Salida" >
               </div>
             </div>
             <div class="form-group row" [ngClass]="{'has-error': (!checkoutestado_idcheckoutestadoAC.valid && checkoutestado_idcheckoutestadoAC.touched), 'has-success': (checkoutestado_idcheckoutestadoAC.valid && checkoutestado_idcheckoutestadoAC.touched)}">

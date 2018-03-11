@@ -96,7 +96,7 @@ export class SalidastocksTableComponent implements OnInit {
     }
     onDeleteConfirm(event, item): void {
       if (window.confirm('¿Estas seguro de querer eliminar este registro?')) {
-          this.service.remove(item.idsalidastock)
+          this.service.remove(item.idsalidastock, item.cantidad, item.stock_idstock)
           .subscribe(
               (data) => this.showToast(data),
               error => console.log(error),
@@ -109,7 +109,26 @@ export class SalidastocksTableComponent implements OnInit {
     showToast(result) {
       if (result.success) {
         this.toastrService.success(result.message);
-        this.getAll();
+         
+        // IMPLEMENTAR EN SOFCREADOR   
+        // VALIDA SI VIENE DE OTRA PÁGINA       
+        this.route.params.subscribe(params => {
+          if (params['idordentarea'] !== undefined) {
+            const idordentarea = +params['idordentarea'];
+            this.findByIdOrdentarea(idordentarea);
+            this.backpage = true;
+          }
+          if (params['idstock'] !== undefined) {
+            const idstock = +params['idstock'];
+            this.findByIdStock(idstock);
+            this.backpage = true;
+          }
+          if (!this.backpage) {
+            this.getAll();
+          }
+        });
+
+
       } else {
         this.toastrService.error(result.message);
       }

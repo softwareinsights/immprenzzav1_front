@@ -15,6 +15,7 @@ export interface OrdensInterface {
    abonado?: number;
    adeudo?: number;
    factura?: boolean;
+   comentarios?: string;
    baja?: boolean;
    created_by?: number;
    created_at?: string;

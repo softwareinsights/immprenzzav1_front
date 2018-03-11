@@ -151,7 +151,28 @@ export class OrdenproductosTableComponent implements OnInit {
     showToast(result) {
       if (result.success) {
         this.toastrService.success(result.message);
-        this.getAll();
+
+        this.route.params.subscribe(params => {
+          if (params['idorden'] !== undefined) {
+            const idorden = +params['idorden'];
+            this.findByIdOrden(idorden);
+            this.backpage = true;
+          }
+          if (params['idproducto'] !== undefined) {
+            const idproducto = +params['idproducto'];
+            this.findByIdProducto(idproducto);
+            this.backpage = true;
+          }
+          if (params['idtipoprecio'] !== undefined) {
+            const idtipoprecio = +params['idtipoprecio'];
+            this.findByIdTipoprecio(idtipoprecio);
+            this.backpage = true;
+          }
+          if (!this.backpage) {
+            this.getAll();
+          }
+        });
+
       } else {
         this.toastrService.error(result.message);
       }

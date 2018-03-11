@@ -14,6 +14,9 @@ import { OrdenestadosAddModalComponent } from './../../../ordenestados/component
 import { OrdenproductosInterface } from './../../../ordenproductos/components/ordenproductos-table/ordenproductos.interface';
 import { OrdenproductosAddModalComponent } from './../../../ordenproductos/components/ordenproductos-table/ordenproductos-add-modal/ordenproductos-add-modal.component';
 
+// import ExportToCSV from "@molteni/export-csv";
+
+
 @Component({
 selector: 'ordens-table',
 templateUrl: './ordens-table.html',
@@ -46,6 +49,274 @@ export class OrdensTableComponent implements OnInit {
         }
       });
     }
+
+
+    descargarCSV() {
+
+      // const exporter = new ExportToCSV();
+      // exporter.exportColumnsToCSV(this.data, 'ordenes.csv');
+
+    }
+
+
+    entregarOrden(ordens: OrdensInterface) {
+      this.service.entregarOrden(ordens)
+        .subscribe(
+           (data: OrdensResponseInterface) => {
+                if (data.success) {
+
+                  this.toastrService.success(data.message);
+
+                  this.route.params.subscribe(params => {
+                    if (params['idcliente'] !== undefined) {
+                      const idcliente = +params['idcliente'];
+                      this.findByIdCliente(idcliente);
+                      this.backpage = true;
+                    }
+                    if (!this.backpage) {
+                      this.getAll();
+                    }
+                  });
+
+                } else {
+                this.toastrService.error(data.message);
+                }
+            },
+            error => console.log(error),
+            () => console.log('Get all Items complete'));
+    }
+
+
+
+    finalizarOrden(ordens: OrdensInterface) {
+      this.service.finalizarOrden(ordens)
+        .subscribe(
+           (data: OrdensResponseInterface) => {
+                if (data.success) {
+
+                  this.toastrService.success(data.message);
+
+                  this.route.params.subscribe(params => {
+                    if (params['idcliente'] !== undefined) {
+                      const idcliente = +params['idcliente'];
+                      this.findByIdCliente(idcliente);
+                      this.backpage = true;
+                    }
+                    if (!this.backpage) {
+                      this.getAll();
+                    }
+                  });
+
+                } else {
+                this.toastrService.error(data.message);
+                }
+            },
+            error => console.log(error),
+            () => console.log('Get all Items complete'));
+    }
+
+    sendFactura(ordens: any) {
+      const innerHTML = `
+        <html>
+        <head>
+        <title>
+          Factura
+        </title>
+        </head>
+        <body>
+          <h2>Información de Factura</h2>
+          <table>
+            <tr>
+              <td>
+              <label for="inputorden_idordenAC" style="font-weight: bold;">Nó de Orden</label>
+              </td>
+              <td>
+              ${ordens.idorden}
+              </td>
+            </tr>
+            <tr>
+              <td>
+              <label for="inputorden_idordenAC" style="font-weight: bold;">Cliente</label>
+              </td>
+              <td>
+              ${ordens.cliente_cliente_idcliente}
+              </td>
+            </tr>
+            <tr>
+              <td>
+              <label for="inputadeudoAnteriorAC" style="font-weight: bold;">Subtotal</label>
+              </td>
+              <td>
+              ${ordens.subtotal}
+              </td>
+            </div>
+            <tr>
+              <td>
+              <label for="inputmontoPagadoAC" style="font-weight: bold;">Total</label>
+              </td>
+              <td>
+              ${ordens.total}
+              </td>
+            </tr>
+            <tr>
+              <td>
+              <label for="inputadeudoActualAC" style="font-weight: bold;">Monto Cubierto</label>
+              </td>
+              <td>
+              ${ordens.cubierto}
+              </td>
+            </tr>
+            <tr>
+              <td>
+              <label for="inputadeudoActualAC" style="font-weight: bold;">Monto Abonado</label>
+              </td>
+              <td>
+              ${ordens.abonado}
+              </td>
+            </tr>
+            <tr>
+              <td>
+              <label for="inputadeudoActualAC" style="font-weight: bold;">Monto Adeudado</label>
+              </td>
+              <td>
+              ${ordens.adeudo}
+              </td>
+            </tr>
+            <tr>
+              <td>
+              <label for="inputfechaAC" style="font-weight: bold;">Fecha</label>
+              </td>
+              <td>
+                ${ordens.fecha}
+              </td>
+            </tr>
+            <tr>
+              <td>
+              <label for="inputhoraAC" style="font-weight: bold;">Hora</label>
+              </td>
+              <td>
+              ${ordens.hora}
+              </td>
+            </tr>
+          </table>
+        </body>
+        </html> 
+      `;
+      const ventimp = window.open(' ', 'popimpr');
+      ventimp.document.write(innerHTML);
+      ventimp.document.close();
+      ventimp.print();
+      ventimp.close();
+    }
+
+    printOrden(ordens: any) {
+      const innerHTML = `
+        <html>
+        <head>
+        <title>
+          Información de Orden Immprenzza
+        </title>
+        </head>
+        <body>
+          <h1>Información Orden</h1>
+          <table>
+            <tr>
+              <td>
+              <label for="inputorden_idordenAC" style="font-weight: bold;">Nó de Orden</label>
+              </td>
+              <td>
+              ${ordens.idorden}
+              </td>
+            </tr>
+            <tr>
+              <td>
+              <label for="inputorden_idordenAC" style="font-weight: bold;">Cliente</label>
+              </td>
+              <td>
+              ${ordens.cliente_cliente_idcliente}
+              </td>
+            </tr>
+            <tr>
+              <td>
+              <label for="inputadeudoAnteriorAC" style="font-weight: bold;">Subtotal</label>
+              </td>
+              <td>
+              ${ordens.subtotal}
+              </td>
+            </div>
+            <tr>
+              <td>
+              <label for="inputmontoPagadoAC" style="font-weight: bold;">Total</label>
+              </td>
+              <td>
+              ${ordens.total}
+              </td>
+            </tr>
+            <tr>
+              <td>
+              <label for="inputadeudoActualAC" style="font-weight: bold;">Monto Cubierto</label>
+              </td>
+              <td>
+              ${ordens.cubierto}
+              </td>
+            </tr>
+            <tr>
+              <td>
+              <label for="inputadeudoActualAC" style="font-weight: bold;">Monto Abonado</label>
+              </td>
+              <td>
+              ${ordens.abonado}
+              </td>
+            </tr>
+            <tr>
+              <td>
+              <label for="inputadeudoActualAC" style="font-weight: bold;">Monto Adeudado</label>
+              </td>
+              <td>
+              ${ordens.adeudo}
+              </td>
+            </tr>
+            <tr>
+              <td>
+              <label for="inputadeudoActualAC" style="font-weight: bold;">Factura</label>
+              </td>
+              <td>
+              ${(ordens.factura) ? 'Si' : 'No'}
+              </td>
+            </tr>
+
+
+            <tr>
+              <td>
+              <label for="inputfechaAC" style="font-weight: bold;">Fecha</label>
+              </td>
+              <td>
+                ${ordens.fecha}
+              </td>
+            </tr>
+            <tr>
+              <td>
+              <label for="inputhoraAC" style="font-weight: bold;">Hora</label>
+              </td>
+              <td>
+              ${ordens.hora}
+              </td>
+            </tr>
+          </table>
+        </body>
+        </html> 
+      `;
+      const ventimp = window.open(' ', 'popimpr');
+      ventimp.document.write(innerHTML);
+      ventimp.document.close();
+      ventimp.print();
+      ventimp.close();
+    }
+
+
+
+
+
     private findByIdCliente(id: number): void {
       this.service
         .findByIdCliente(id)
@@ -86,12 +357,12 @@ export class OrdensTableComponent implements OnInit {
             this.service
               .updateMontos(idorden)
               .subscribe(
-                  (data: OrdensResponseInterface) => {
+                  (_data: OrdensResponseInterface) => {
                       if (data.success) {
-                        this.showToast(data);
+                        this.showToast(_data);
                         this.getAll();
                       } else {
-                        this.toastrService.error(data.message);
+                        this.toastrService.error(_data.message);
                       }
                   },
                   error => console.log(error),
@@ -118,6 +389,7 @@ export class OrdensTableComponent implements OnInit {
     ordenestadoShowToast(result) {
         if (result.success) {
             this.toastrService.success(result.message);
+            this.getAll();
         } else {
             this.toastrService.error(result.message);
         }
@@ -132,17 +404,37 @@ export class OrdensTableComponent implements OnInit {
       const disposable = this.dialogService.addDialog(OrdenproductosAddModalComponent, ordenproducto)
       .subscribe( data => {
           if (data) {
-          this.ordenproductoShowToast(data);
+            this.ordenproductoShowToast(data, ordens.idorden);
           }
       });
     }
-    ordenproductoShowToast(result) {
-        if (result.success) {
-            this.toastrService.success(result.message);
+
+
+    ordenproductoShowToast(data, idorden) {
+        if (data.success) {
+            this.toastrService.success(data.message);
+
+            // ACTUALIZAR MONTOS CON Orden  
+            this.service
+              .updateMontos(idorden)
+              .subscribe(
+                  (_data: OrdensResponseInterface) => {
+                      if (data.success) {
+                        this.showToast(_data);
+                        this.getAll();
+                      } else {
+                        this.toastrService.error(_data.message);
+                      }
+                  },
+                  error => console.log(error),
+                  () => console.log('Get all Items complete'))
+
         } else {
-            this.toastrService.error(result.message);
+            this.toastrService.error(data.message);
         }
     }
+
+
     viewOrdenproducto(ordens: OrdensInterface) {
       this.router.navigate([`/pages/ordenproductos/orden/${ordens.idorden}`]);
     }

@@ -1,5 +1,6 @@
 export interface LoginInterface {
-  email: string;
+  idsi_user?: number;
+  email?: string;
   password: string;
-  recordarSesion: boolean;
+  recordarSesion?: boolean;
 }

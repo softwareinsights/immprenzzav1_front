@@ -1,3 +1,6 @@
+import { StocksInterface } from './../../../stocks/components/stocks-table/stocks.interface';
+import { EgresoconceptosModule } from './../../egresoconceptos.module';
+import { StocksAddModalComponent } from './../../../stocks/components/stocks-table/stocks-add-modal/stocks-add-modal.component';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DialogService } from 'ng2-bootstrap-modal';
 import { ToastrService } from 'ngx-toastr';
@@ -45,6 +48,26 @@ export class EgresoconceptosTableComponent implements OnInit {
         }
       });
     }
+
+
+    agregarAStock(egresoconceptos: any) {
+
+      const stock: StocksInterface = {
+        'nombre': egresoconceptos.concepto_concepto_idconcepto,
+        'cantidad': egresoconceptos.cantidad,
+      };
+
+      const disposable = this.dialogService.addDialog(StocksAddModalComponent, stock)
+      .subscribe( data => {
+          if (data) {
+            this.showToast(data);
+          }
+      },
+      error => console.log(error),
+      () => console.log('Modified complete'));
+    }
+
+
     private findByIdConcepto(id: number): void {
       this.service
         .findByIdConcepto(id)

@@ -8,7 +8,7 @@
                         <tr>
                             <th colspan='7' class='text-left'>
                                 Filtrar por Fecha:
-                                <input class='form-control' [(ngModel)]='filterQuery1' />
+                                <input class='form-control' [(ngModel)]='filterQuery1' type="date"/>
                             </th>
                         </tr>
                         <tr>
@@ -36,7 +36,10 @@
                     <tbody>
                         <tr *ngFor='let item of mf.data;  let i = index'>
                             <td>
+                                <button title='Imprimir Abono' (click)='printAbono(item)' class='btn btn-sm btn-primary'><i class='fa fa-print'></i> Imprimir Abono</button>
+                                
                                 <button title='Editar Registro' (click)='editModalShow(item)' class='btn btn-sm btn-info'><i class='fa fa-edit'></i></button>
+                                
                                 <button title='Eliminar Registro' (click)='onDeleteConfirm($event, item)' class='btn btn-sm btn-danger'><i class='fa fa-trash'></i></button>
                             </td>
                             <td>{{ item.orden_orden_idorden }}</td>

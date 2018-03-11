@@ -46,7 +46,15 @@ export class LoginComponent {
       this.service
         .login(values)
         .subscribe(
-            (response: LoginResponseInterface) => console.log(response));
+            (response: LoginResponseInterface) => {
+                if (response.success) {
+                    this.toastrService.success(response.message);
+                } else {
+                    this.toastrService.error(response.message);
+                }
+        });
+              
+              
     }
   }
 

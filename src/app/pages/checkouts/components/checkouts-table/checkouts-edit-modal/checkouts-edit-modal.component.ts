@@ -22,7 +22,6 @@ export class CheckoutsEditModalComponent extends DialogComponent<CheckoutsInterf
   empleado_idempleado: number;
   fecha: string;
   horaEntra: string;
-  horaSale: string;
   checkoutestado_idcheckoutestado: number;
 
   modalHeader: string;
@@ -33,7 +32,6 @@ export class CheckoutsEditModalComponent extends DialogComponent<CheckoutsInterf
   empleado_idempleadoAC: AbstractControl;
   fechaAC: AbstractControl;
   horaEntraAC: AbstractControl;
-  horaSaleAC: AbstractControl;
   checkoutestado_idcheckoutestadoAC: AbstractControl;
   constructor(
       private service: CheckoutsService,
@@ -49,13 +47,11 @@ export class CheckoutsEditModalComponent extends DialogComponent<CheckoutsInterf
     'empleado_idempleadoAC' : ['',Validators.compose([Validators.required,Validators.maxLength(11)])],
     'fechaAC' : [''],
     'horaEntraAC' : [''],
-    'horaSaleAC' : [''],
     'checkoutestado_idcheckoutestadoAC' : ['',Validators.compose([Validators.required,Validators.maxLength(11)])],
   });
   this.empleado_idempleadoAC = this.form.controls['empleado_idempleadoAC'];
   this.fechaAC = this.form.controls['fechaAC'];
   this.horaEntraAC = this.form.controls['horaEntraAC'];
-  this.horaSaleAC = this.form.controls['horaSaleAC'];
   this.checkoutestado_idcheckoutestadoAC = this.form.controls['checkoutestado_idcheckoutestadoAC'];
   }
   ngOnInit() {
@@ -122,7 +118,6 @@ export class CheckoutsEditModalComponent extends DialogComponent<CheckoutsInterf
                   empleado_idempleado: this.empleado_idempleado,
                   fecha: this.fecha,
                   horaEntra: this.horaEntra,
-                  horaSale: this.horaSale,
                   checkoutestado_idcheckoutestado: this.checkoutestado_idcheckoutestado,
               })
               .subscribe(

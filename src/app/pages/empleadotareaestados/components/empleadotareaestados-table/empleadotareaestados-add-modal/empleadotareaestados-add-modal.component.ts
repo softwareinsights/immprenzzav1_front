@@ -57,6 +57,19 @@ export class EmpleadotareaestadosAddModalComponent extends DialogComponent<Emple
   ngOnInit() {
       this.getEmpleadotarea();
       this.getEstadoscrum();
+
+        // GENERAR FECHA Y HORA ACTUAL
+        const date = new Date();
+        const month = (date.getMonth() + 1);
+        const day = date.getDate();
+        const fecha = date.getFullYear() + "-" + ((month < 10) ? "0" : "") + month + "-" + ((day < 10) ? "0" : "") + day;
+        const hour = date.getHours();
+        const minutes = date.getMinutes();
+        const hora = ((hour < 10) ? "0" : "") + hour + ':' + ((minutes < 10) ? "0" : "") + minutes;
+
+        this.fecha = fecha;
+        this.hora = hora;
+
   }
   empleadotareaAddModalShow() {
       const disposable = this.dialogService.addDialog(EmpleadotareasAddModalComponent)

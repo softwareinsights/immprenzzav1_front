@@ -1,3 +1,4 @@
+import { ArchivosInterface } from './../../../pages/archivos/components/archivos-table/archivos.interface';
 import { ToastrService } from 'ngx-toastr';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { UploadModalService } from './upload-modal.service';
@@ -6,12 +7,6 @@ import { Component, OnInit, EventEmitter } from '@angular/core';
 import { NgUploaderOptions } from 'ngx-uploader';
 import { Configuration } from './../../../app.constants';
 
-export interface ArchivoInterface {
-  idreferencia: number;
-  proceso: string;
-  tipoarchivo: string;
-  urlarchivo: string;
-}
 
 @Component({
   selector: 'upload-service-modal',
@@ -25,26 +20,27 @@ export class UploadModalComponent implements OnInit {
   referencia: string;
   modalHeader: string;
 
-  defaultPicture = 'assets/img/theme/no-photo.png';
+  defaultPicture = 'assets/images/file.png';
 
   profile: any = {
-    picture: 'assets/img/theme/no-photo.png',
+    picture: 'assets/images/file.png',
   };
 
   fileUploaderOptions: NgUploaderOptions = {
-    url: `${this._configuration.imageServerWithApiUrl}images/`,
+    url: `${this._configuration.imageServerWithApiUrl}cargaArchivo/ordentarea-`,
+
   };
 
   uploadCompled(event: any) {
     if (event.done) {
       const response = JSON.parse(event.response);
       if (response.status === 'success') {
-        const archivo: ArchivoInterface = {
-            idreferencia: this.id,
-            proceso: this.referencia,
-            tipoarchivo: response.type,
-            urlarchivo: response.src,
-        }
+        const archivo: ArchivosInterface = {
+            ordentarea_idordentarea: this.id,
+            tipo: response.type,
+            url: response.src,
+        };
+        
         this.service.setFile(archivo)
           .subscribe(
             (data: any) => this.showToast(data),
@@ -55,7 +51,7 @@ export class UploadModalComponent implements OnInit {
   }
 
   showToast(data) {
-    if (data.status === 'success') {
+    if (data.success) {
       this.toastrService.success(data.message);
     } else {
       this.toastrService.error(data.message);

@@ -17,25 +17,28 @@
                         </tr>
                         <tr>
                             <th style='width: 20%'></th>
-                            <th style='width: 11%'>
+                            <th style='width: 10%'>
                                 <mfDefaultSorter by='orden_orden_idorden'>Número de Orden</mfDefaultSorter>
                             </th>
-                            <th style='width: 11%'>
+                            <th style='width: 10%'>
+                                <mfDefaultSorter by='cliente'>Cliente</mfDefaultSorter>
+                            </th>
+                            <th style='width: 10%'>
                                 <mfDefaultSorter by='producto_producto_idproducto'>Producto</mfDefaultSorter>
                             </th>
-                            <th style='width: 11%'>
+                            <th style='width: 10%'>
                                 <mfDefaultSorter by='cantidad'>Cantidad Unidades</mfDefaultSorter>
                             </th>
-                            <th style='width: 11%'>
+                            <th style='width: 10%'>
                                 <mfDefaultSorter by='ancho'>Ancho en Metros</mfDefaultSorter>
                             </th>
-                            <th style='width: 11%'>
+                            <th style='width: 10%'>
                                 <mfDefaultSorter by='alto'>Alto en Metros</mfDefaultSorter>
                             </th>
-                            <th style='width: 11%'>
+                            <th style='width: 10%'>
                                 <mfDefaultSorter by='tipoprecio_tipoprecio_idtipoprecio'>Precio Para</mfDefaultSorter>
                             </th>
-                            <th style='width: 11%'>
+                            <th style='width: 10%'>
                                 <mfDefaultSorter by='precio'>Precio</mfDefaultSorter>
                             </th>
                         </tr>
@@ -43,16 +46,17 @@
                     <tbody>
                         <tr *ngFor='let item of mf.data;  let i = index'>
                             <td>
-                                <button title='Agregar Orden Tarea' (click)='insertOrdentarea(item)' class='btn btn-sm btn-success'><i class='fa fa-plus'></i></button>
-                                <button title='Ver Orden Tarea' (click)='viewOrdentarea(item)' class='btn btn-sm btn-warning'><i class='fa fa-eye'></i></button>
+                                <button title='Agregar Orden Tarea' (click)='insertOrdentarea(item)' class='btn btn-sm btn-success'><i class='fa fa-plus'></i> Agregar Tarea</button>
+                                <button title='Ver Orden Tarea' (click)='viewOrdentarea(item)' class='btn btn-sm btn-warning'><i class='fa fa-eye'></i> Ver Tarea</button>
                                 <button title='Editar Registro' (click)='editModalShow(item)' class='btn btn-sm btn-info'><i class='fa fa-edit'></i></button>
                                 <button title='Eliminar Registro' (click)='onDeleteConfirm($event, item)' class='btn btn-sm btn-danger'><i class='fa fa-trash'></i></button>
                             </td>
                             <td>{{ item.orden_orden_idorden }}</td>
+                            <td>{{ item.cliente }}</td>
                             <td>{{ item.producto_producto_idproducto }}</td>
-                            <td>{{ item.cantidad  }}</td>
-                            <td>{{ item.ancho  }}</td>
-                            <td>{{ item.alto  }}</td>
+                            <td>{{ item.cantidad }}</td>
+                            <td>{{ item.ancho }}</td>
+                            <td>{{ item.alto }}</td>
                             <td>{{ item.tipoprecio_tipoprecio_idtipoprecio }}</td>
                             <td>{{ item.precio  }}</td>
                         </tr>

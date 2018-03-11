@@ -15,7 +15,7 @@
               <label for="inputempleadotarea_idempleadotareaAC" class="col-sm-3 form-control-label">Empleado Tarea</label>
               <div class="col-sm-7">
                <select [(ngModel)]="empleadotarea_idempleadotarea" [formControl]="empleadotarea_idempleadotareaAC" class="form-control" id="inputempleadotarea_idempleadotareaAC" required>
-                 <option value="{{item.idempleadotarea}}" *ngFor="let item of _empleadotarea">{{item.idempleadotarea}}</option>
+                 <option value="{{item.idempleadotarea}}" *ngFor="let item of _empleadotarea">{{item.empleado_empleado_idempleado}} - {{item.ordentarea_ordentarea_idordentarea}} - {{item.especificaciones}}</option>
                </select>
               </div>
               <div class='col-sm-2'>

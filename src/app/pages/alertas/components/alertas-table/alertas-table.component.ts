@@ -14,7 +14,10 @@ templateUrl: './alertas-table.html',
 styleUrls: ['./alertas-table.scss'],
 })
 export class AlertasTableComponent implements OnInit {
+    enviadas = [];
+    recibidas = [];
     data;
+
     filterQuery = '';
     rowsOnPage = 10;
     sortBy = 'idalerta';
@@ -120,7 +123,8 @@ export class AlertasTableComponent implements OnInit {
         .subscribe(
             (data: AlertasResponseInterface) =>  {
                 if (data.success) {
-                  this.data = data.result;
+                  this.enviadas = data.result.enviadas;
+                  this.recibidas = data.result.recibidas;
                 } else {
                   this.toastrService.error(data.message);
                 }

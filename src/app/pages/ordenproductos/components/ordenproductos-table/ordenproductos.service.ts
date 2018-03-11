@@ -24,6 +24,16 @@ export class OrdenproductosService {
         this.options = new RequestOptions({ headers: this.headers });
         this.endPoint = `${this._configuration.ServerWithApiUrl}ordenproducto`;
        }
+
+       calcularPrecio = (calculo: any) : Observable<OrdenproductosResponseInterface> => {
+           
+    console.log("calculo service", calculo);
+           return this._http.post(`${this.endPoint}/calcular-precio`, calculo, this.options)
+               .map((response: Response) => response.json())
+               .catch(this.handleError);
+       }
+
+
        findByIdOrden = ( id ) : Observable<OrdenproductosResponseInterface> => {
            return this._http.get(`${this.endPoint}/orden/${id}`, this.options)
                .map((response: Response) => response.json())

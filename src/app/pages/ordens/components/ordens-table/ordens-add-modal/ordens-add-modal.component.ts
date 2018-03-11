@@ -25,8 +25,6 @@ export class OrdensAddModalComponent extends DialogComponent<OrdensInterface, an
   hora: string;
   fechaEntregaEstimada: string;
   horaEntregaEstimada: string;
-  fechaEntregaReal: string;
-  horaEntregaReal: string;
   fechaInicioEstimada: string;
   horaInicioEstimada: string;
   subtotal: number;
@@ -35,6 +33,7 @@ export class OrdensAddModalComponent extends DialogComponent<OrdensInterface, an
   abonado: number;
   adeudo: number;
   factura: boolean;
+  comentarios: string;
   ordenproducto: any[];
 
   modalHeader: string;
@@ -46,8 +45,6 @@ export class OrdensAddModalComponent extends DialogComponent<OrdensInterface, an
   horaAC: AbstractControl;
   fechaEntregaEstimadaAC: AbstractControl;
   horaEntregaEstimadaAC: AbstractControl;
-  fechaEntregaRealAC: AbstractControl;
-  horaEntregaRealAC: AbstractControl;
   fechaInicioEstimadaAC: AbstractControl;
   horaInicioEstimadaAC: AbstractControl;
   subtotalAC: AbstractControl;
@@ -56,6 +53,7 @@ export class OrdensAddModalComponent extends DialogComponent<OrdensInterface, an
   abonadoAC: AbstractControl;
   adeudoAC: AbstractControl;
   facturaAC: AbstractControl;
+  comentariosAC: AbstractControl;
   ordenproductoAC: AbstractControl;
 
   constructor(
@@ -75,8 +73,6 @@ export class OrdensAddModalComponent extends DialogComponent<OrdensInterface, an
     'horaAC' : [''],
     'fechaEntregaEstimadaAC' : [''],
     'horaEntregaEstimadaAC' : [''],
-    'fechaEntregaRealAC' : [''],
-    'horaEntregaRealAC' : [''],
     'fechaInicioEstimadaAC' : [''],
     'horaInicioEstimadaAC' : [''],
     'subtotalAC' : [''],
@@ -85,6 +81,7 @@ export class OrdensAddModalComponent extends DialogComponent<OrdensInterface, an
     'abonadoAC' : [''],
     'adeudoAC' : [''],
     'facturaAC' : [''],
+    'comentariosAC' : [''],
     'ordenproductoAC' : [''],
     });
     this.cliente_idclienteAC = this.form.controls['cliente_idclienteAC'];
@@ -92,8 +89,6 @@ export class OrdensAddModalComponent extends DialogComponent<OrdensInterface, an
     this.horaAC = this.form.controls['horaAC'];
     this.fechaEntregaEstimadaAC = this.form.controls['fechaEntregaEstimadaAC'];
     this.horaEntregaEstimadaAC = this.form.controls['horaEntregaEstimadaAC'];
-    this.fechaEntregaRealAC = this.form.controls['fechaEntregaRealAC'];
-    this.horaEntregaRealAC = this.form.controls['horaEntregaRealAC'];
     this.fechaInicioEstimadaAC = this.form.controls['fechaInicioEstimadaAC'];
     this.horaInicioEstimadaAC = this.form.controls['horaInicioEstimadaAC'];
     this.subtotalAC = this.form.controls['subtotalAC'];
@@ -102,11 +97,24 @@ export class OrdensAddModalComponent extends DialogComponent<OrdensInterface, an
     this.abonadoAC = this.form.controls['abonadoAC'];
     this.adeudoAC = this.form.controls['adeudoAC'];
     this.facturaAC = this.form.controls['facturaAC'];
+    this.comentariosAC = this.form.controls['comentariosAC'];
     this.ordenproductoAC = this.form.controls['ordenproductoAC'];
   }
   ngOnInit() {
       this.getCliente();
       this.getProducto();
+    
+    // FECHA Y HORA ACTUAL
+    const date = this.authLocalstorage.getCurrentDateAndHour();
+    this.fecha = date.fecha;
+    this.hora = date.hora;
+
+    // SET
+    this.subtotal = 0;
+    this.total = 0;
+    this.cubierto = 0;
+    this.abonado = 0;
+    this.adeudo = 0;
   }
   clienteAddModalShow() {
       const disposable = this.dialogService.addDialog(ClientesAddModalComponent)
@@ -174,8 +182,6 @@ export class OrdensAddModalComponent extends DialogComponent<OrdensInterface, an
                   hora: this.hora,
                   fechaEntregaEstimada: this.fechaEntregaEstimada,
                   horaEntregaEstimada: this.horaEntregaEstimada,
-                  fechaEntregaReal: this.fechaEntregaReal,
-                  horaEntregaReal: this.horaEntregaReal,
                   fechaInicioEstimada: this.fechaInicioEstimada,
                   horaInicioEstimada: this.horaInicioEstimada,
                   subtotal: this.subtotal,
@@ -183,7 +189,8 @@ export class OrdensAddModalComponent extends DialogComponent<OrdensInterface, an
                   cubierto: this.cubierto,
                   abonado: this.abonado,
                   adeudo: this.adeudo,
-                  factura: this.factura
+                  factura: this.factura,
+                  comentarios: this.comentarios
         })
         .subscribe(
             (data: any) => {

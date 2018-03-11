@@ -17,8 +17,7 @@ export const routes: Routes = [
 },
 {
     path: 'change-password',
-    loadChildren: 'app/pages/change-password/change-password.module#ChangePasswordModule', 
-    canActivate: [AuthGuard]
+    loadChildren: 'app/pages/change-password/change-password.module#ChangePasswordModule'
 },
 {
     path: 'pages',
@@ -30,6 +29,13 @@ export const routes: Routes = [
     { path: 'abonos', loadChildren: './abonos/abonos.module#AbonosModule',
         canActivateChild: [AuthGuard] },
     { path: 'abonos/orden/:idorden', loadChildren: './abonos/abonos.module#AbonosModule'},
+    { path: 'accuracyestimacions', loadChildren: './accuracyestimacions/accuracyestimacions.module#AccuracyestimacionsModule',
+        canActivateChild: [AuthGuard] },
+    { path: 'accuracyestimacions/ordentarea/:idordentarea', loadChildren: './accuracyestimacions/accuracyestimacions.module#AccuracyestimacionsModule'},
+    { path: 'accuracyestimacions/empleado/:idempleado', loadChildren: './accuracyestimacions/accuracyestimacions.module#AccuracyestimacionsModule'},
+    { path: 'accuracytiempos', loadChildren: './accuracytiempos/accuracytiempos.module#AccuracytiemposModule',
+        canActivateChild: [AuthGuard] },
+    { path: 'accuracytiempos/empleado/:idempleado', loadChildren: './accuracytiempos/accuracytiempos.module#AccuracytiemposModule'},
     { path: 'alertas', loadChildren: './alertas/alertas.module#AlertasModule',
         canActivateChild: [AuthGuard] },
     { path: 'alertas/empleado/:idempleado', loadChildren: './alertas/alertas.module#AlertasModule'},
@@ -90,6 +96,7 @@ export const routes: Routes = [
     { path: 'ordentareas', loadChildren: './ordentareas/ordentareas.module#OrdentareasModule',
         canActivateChild: [AuthGuard] },
     { path: 'ordentareas/tarea/:idtarea', loadChildren: './ordentareas/ordentareas.module#OrdentareasModule'},
+    { path: 'ordentareas/empleadotarea/:idempleadotarea', loadChildren: './ordentareas/ordentareas.module#OrdentareasModule'},
     { path: 'ordentareas/ordenproducto/:idordenproducto', loadChildren: './ordentareas/ordentareas.module#OrdentareasModule'},
     { path: 'ordentareaestados', loadChildren: './ordentareaestados/ordentareaestados.module#OrdentareaestadosModule',
         canActivateChild: [AuthGuard] },

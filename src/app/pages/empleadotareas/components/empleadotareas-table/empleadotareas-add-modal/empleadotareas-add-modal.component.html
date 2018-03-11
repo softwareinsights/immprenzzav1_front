@@ -25,8 +25,8 @@
             <div class="form-group row" [ngClass]="{'has-error': (!ordentarea_idordentareaAC.valid && ordentarea_idordentareaAC.touched), 'has-success': (ordentarea_idordentareaAC.valid && ordentarea_idordentareaAC.touched)}">
               <label for="inputordentarea_idordentareaAC" class="col-sm-3 form-control-label">Tarea</label>
               <div class="col-sm-7">
-               <select [(ngModel)]="ordentarea_idordentarea" [formControl]="ordentarea_idordentareaAC" class="form-control" id="inputordentarea_idordentareaAC" required>
-                 <option value="{{item.idordentarea}}" *ngFor="let item of _ordentarea">{{item.tarea_tarea_idtarea}}</option>
+               <select (change)="getEmpleado()" [(ngModel)]="ordentarea_idordentarea" [formControl]="ordentarea_idordentareaAC" class="form-control" id="inputordentarea_idordentareaAC" required>
+                 <option value="{{item.idordentarea}}" *ngFor="let item of _ordentarea">{{item.tarea_tarea_idtarea}} - {{item.cliente}} - {{item.especificaciones}}</option>
                </select>
               </div>
               <div class='col-sm-2'>

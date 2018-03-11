@@ -46,18 +46,6 @@
                 <input [(ngModel)]="horaEntregaEstimada" [formControl]="horaEntregaEstimadaAC" type="time"  class="form-control" id="inputhoraEntregaEstimadaAC" placeholder="Hora Estimada de Entrega" >
               </div>
             </div>
-            <div class="form-group row" [ngClass]="{'has-error': (!fechaEntregaRealAC.valid && fechaEntregaRealAC.touched), 'has-success': (fechaEntregaRealAC.valid && fechaEntregaRealAC.touched)}">
-              <label for="inputfechaEntregaRealAC" class="col-sm-3 form-control-label">Fecha Real de Entrega</label>
-              <div class="col-sm-9">
-                <input [(ngModel)]="fechaEntregaReal" [formControl]="fechaEntregaRealAC" type="date"  class="form-control" id="inputfechaEntregaRealAC" placeholder="Fecha Real de Entrega" >
-              </div>
-            </div>
-            <div class="form-group row" [ngClass]="{'has-error': (!horaEntregaRealAC.valid && horaEntregaRealAC.touched), 'has-success': (horaEntregaRealAC.valid && horaEntregaRealAC.touched)}">
-              <label for="inputhoraEntregaRealAC" class="col-sm-3 form-control-label">Hora Real de Entrega</label>
-              <div class="col-sm-9">
-                <input [(ngModel)]="horaEntregaReal" [formControl]="horaEntregaRealAC" type="time"  class="form-control" id="inputhoraEntregaRealAC" placeholder="Hora Real de Entrega" >
-              </div>
-            </div>
             <div class="form-group row" [ngClass]="{'has-error': (!fechaInicioEstimadaAC.valid && fechaInicioEstimadaAC.touched), 'has-success': (fechaInicioEstimadaAC.valid && fechaInicioEstimadaAC.touched)}">
               <label for="inputfechaInicioEstimadaAC" class="col-sm-3 form-control-label">Fecha Estimada de Inicio</label>
               <div class="col-sm-9">
@@ -106,18 +94,13 @@
                 <input [(ngModel)]="factura" [formControl]="facturaAC" type="checkbox" class="form-check-input" id="inputfacturaAC">
               </div>
             </div>
-            <!--
-            <div class="form-group row" [ngClass]="{'has-error': (!ordenproductoAC.valid && ordenproductoAC.touched), 'has-success': (ordenproductoAC.valid && ordenproductoAC.touched)}">
-              <label for="inputordenproductoAC" class="col-sm-3 form-check-label">Producto</label>
-              <div class="col-sm-7">
-               <select multiple [(ngModel)]="ordenproducto" [formControl]="ordenproductoAC" class="form-control" id="inputordenproductoAC">
-                 <option value="{{item.idproducto}}" *ngFor="let item of _producto">{{item.nombre}}</option>
-               </select>
-              </div>
-              <div class='col-sm-2'>
-                <button (click)='productoAddModalShow()' class='btn btn-primary'><i class='fa fa-plus'></i></button>
+            <div class="form-group row" [ngClass]="{'has-error': (!comentariosAC.valid && comentariosAC.touched), 'has-success': (comentariosAC.valid && comentariosAC.touched)}">
+              <label for="inputcomentariosAC" class="col-sm-3 form-check-label">Comentarios</label>
+              <div class="col-sm-9">
+               <textarea [(ngModel)]="comentarios" [formControl]="comentariosAC" class="form-control form-control-textarea" id="inputcomentariosAC"> </textarea>
               </div>
             </div>
+            <!--
             -->
           </ba-card>
         </div>

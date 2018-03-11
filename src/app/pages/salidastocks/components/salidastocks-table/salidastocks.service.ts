@@ -49,8 +49,8 @@ export class SalidastocksService {
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
-       remove= ( id ) : Observable<SalidastocksResponseInterface> => {
-           return this._http.delete(`${this.endPoint}/${id}`, this.options)
+       remove= ( id, cantidad, idstock ) : Observable<SalidastocksResponseInterface> => {
+           return this._http.delete(`${this.endPoint}/${id}/${cantidad}/${idstock}`, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }

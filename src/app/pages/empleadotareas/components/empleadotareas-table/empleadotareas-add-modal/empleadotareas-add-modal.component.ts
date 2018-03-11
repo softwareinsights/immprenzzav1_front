@@ -50,6 +50,7 @@ export class EmpleadotareasAddModalComponent extends DialogComponent<Empleadotar
       this.getEmpleado();
       this.getOrdentarea();
   }
+
   empleadoAddModalShow() {
       const disposable = this.dialogService.addDialog(EmpleadosAddModalComponent)
       .subscribe( data => {
@@ -83,7 +84,7 @@ export class EmpleadotareasAddModalComponent extends DialogComponent<Empleadotar
       }
   }
   getEmpleado() {
-      this.empleadosService.all()
+      this.empleadosService.allByAreaWithIdOrdenTarea(this.ordentarea_idordentarea)
       .subscribe(
           (data: any) => this._empleado = data.result,
       );

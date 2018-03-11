@@ -22,6 +22,8 @@ export class SalidastocksAddModalComponent extends DialogComponent<SalidastocksI
   ordentarea_idordentarea: number;
   stock_idstock: number;
   cantidad: number;
+  fecha: string;
+  hora: string;
 
   modalHeader: string;
   data: any;
@@ -30,6 +32,8 @@ export class SalidastocksAddModalComponent extends DialogComponent<SalidastocksI
   ordentarea_idordentareaAC: AbstractControl;
   stock_idstockAC: AbstractControl;
   cantidadAC: AbstractControl;
+  fechaAC: AbstractControl;
+  horaAC: AbstractControl;
 
   constructor(
     private service: SalidastocksService,
@@ -45,14 +49,23 @@ export class SalidastocksAddModalComponent extends DialogComponent<SalidastocksI
     'ordentarea_idordentareaAC' : ['',Validators.compose([Validators.required,Validators.maxLength(11)])],
     'stock_idstockAC' : ['',Validators.compose([Validators.required,Validators.maxLength(11)])],
     'cantidadAC' : ['',Validators.compose([Validators.required,Validators.maxLength(5)])],
+    'fechaAC' : [''],
+    'horaAC' : [''],
     });
     this.ordentarea_idordentareaAC = this.form.controls['ordentarea_idordentareaAC'];
     this.stock_idstockAC = this.form.controls['stock_idstockAC'];
     this.cantidadAC = this.form.controls['cantidadAC'];
+    this.fechaAC = this.form.controls['fechaAC'];
+    this.horaAC = this.form.controls['horaAC'];
   }
   ngOnInit() {
       this.getOrdentarea();
       this.getStock();
+      
+    // FECHA Y HORA ACTUAL
+    const date = this.authLocalstorage.getCurrentDateAndHour();
+    this.fecha = date.fecha;
+    this.hora = date.hora;
   }
   ordentareaAddModalShow() {
       const disposable = this.dialogService.addDialog(OrdentareasAddModalComponent)
@@ -110,6 +123,8 @@ export class SalidastocksAddModalComponent extends DialogComponent<SalidastocksI
                   ordentarea_idordentarea: this.ordentarea_idordentarea,
                   stock_idstock: this.stock_idstock,
                   cantidad: this.cantidad,
+                  fecha: this.fecha,
+                  hora: this.hora,
         })
         .subscribe(
             (data: any) => {

@@ -22,6 +22,9 @@
                         <tr>
                             <th style='width: 20%'></th>
                             <th style='width: 26%'>
+                                <mfDefaultSorter>Imagen</mfDefaultSorter>
+                            </th>
+                            <th style='width: 26%'>
                                 <mfDefaultSorter by='ordentarea_ordentarea_idordentarea'>Tarea</mfDefaultSorter>
                             </th>
                             <th style='width: 26%'>
@@ -37,6 +40,11 @@
                             <td>
                                 <button title='Editar Registro' (click)='editModalShow(item)' class='btn btn-sm btn-info'><i class='fa fa-edit'></i></button>
                                 <button title='Eliminar Registro' (click)='onDeleteConfirm($event, item)' class='btn btn-sm btn-danger'><i class='fa fa-trash'></i></button>
+                            </td>
+                            <td>
+                                <a href="{{ item.url ? item.url : '#' }}" target="_blank" title="Descargar">
+                                    <img src="{{ item.imagen ? item.imagen : '' }}" ngClass="{'hidden': !item.imagen}" alt="imagen" width="90" height="90" style="border:0;">
+                                </a>
                             </td>
                             <td>{{ item.ordentarea_ordentarea_idordentarea }}</td>
                             <td>{{ item.url  }}</td>

@@ -79,6 +79,8 @@ export class TareasTableComponent implements OnInit {
         window.history.back();
     }
     insertOrdentarea(tareas: TareasInterface) {
+
+      console.log("tareas", tareas);
       const ordentarea: OrdentareasInterface = {
         tarea_idtarea: tareas.idtarea
       }

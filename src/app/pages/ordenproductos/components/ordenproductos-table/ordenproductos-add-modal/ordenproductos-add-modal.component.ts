@@ -75,6 +75,29 @@ export class OrdenproductosAddModalComponent extends DialogComponent<Ordenproduc
       this.getProducto();
       this.getTipoprecio();
   }
+
+  calcularPrecio() {
+    const calculo = {
+        'idtipoprecio': this.tipoprecio_idtipoprecio,
+        'ancho': this.ancho,
+        'alto': this.alto,
+        'cantidad': this.cantidad,
+        'producto_idproducto': this.producto_idproducto,
+    };
+
+    this.service.calcularPrecio(calculo)
+      .subscribe( data => {
+          if (data) {
+            if (data.success) {
+                this.precio = data.result;
+                this.toastrService.success(data.message);
+            } else {
+                this.toastrService.error(data.message);
+            }
+          }
+      });
+  }
+
   ordenAddModalShow() {
       const disposable = this.dialogService.addDialog(OrdensAddModalComponent)
       .subscribe( data => {

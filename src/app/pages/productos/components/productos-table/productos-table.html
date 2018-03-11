@@ -26,9 +26,6 @@
                         <tr>
                             <th style='width: 20%'></th>
                             <th style='width: 8%'>
-                                <mfDefaultSorter by='formula_formula_idformula'>Fórmula</mfDefaultSorter>
-                            </th>
-                            <th style='width: 8%'>
                                 <mfDefaultSorter by='nombre'>Nombre</mfDefaultSorter>
                             </th>
                             <th style='width: 8%'>
@@ -52,6 +49,9 @@
                             <th style='width: 8%'>
                                 <mfDefaultSorter by='extraPrecio'>Costo Extra</mfDefaultSorter>
                             </th>
+                            <th style='width: 8%'>
+                                <mfDefaultSorter by='formula_formula_idformula'>Fórmula</mfDefaultSorter>
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -64,7 +64,6 @@
                                 <button title='Editar Registro' (click)='editModalShow(item)' class='btn btn-sm btn-info'><i class='fa fa-edit'></i></button>
                                 <button title='Eliminar Registro' (click)='onDeleteConfirm($event, item)' class='btn btn-sm btn-danger'><i class='fa fa-trash'></i></button>
                             </td>
-                            <td>{{ item.formula_formula_idformula }}</td>
                             <td>{{ item.nombre  }}</td>
                             <td>{{ item.area_area_idarea }}</td>
                             <td>{{ item.duracionEstimada  }}</td>
@@ -73,6 +72,7 @@
                             <td>{{ item.precioMaquila  }}</td>
                             <td>{{ item.extraPor  }}</td>
                             <td>{{ item.extraPrecio  }}</td>
+                            <td>{{ item.formula_formula_idformula }}</td>
                         </tr>
                     </tbody>
                     <tfoot>

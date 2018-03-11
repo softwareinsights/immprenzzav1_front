@@ -92,9 +92,13 @@ export class EmpleadotareasTableComponent implements OnInit {
     empleadotareaestadoShowToast(result) {
         if (result.success) {
             this.toastrService.success(result.message);
+            this.getAll();
         } else {
             this.toastrService.error(result.message);
         }
+    }
+    viewOrdenTarea(empleadotareas: EmpleadotareasInterface) {
+      this.router.navigate([`/pages/ordentareas/empleadotarea/${empleadotareas.idempleadotarea}`]);
     }
     viewEmpleadotareaestado(empleadotareas: EmpleadotareasInterface) {
       this.router.navigate([`/pages/empleadotareaestados/empleadotarea/${empleadotareas.idempleadotarea}`]);

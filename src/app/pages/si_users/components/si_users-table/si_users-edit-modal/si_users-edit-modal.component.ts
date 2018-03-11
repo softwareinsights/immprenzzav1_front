@@ -52,6 +52,8 @@ export class Si_usersEditModalComponent extends DialogComponent<Si_usersInterfac
   }
   ngOnInit() {
       this.getSi_rol();
+
+      this.password = '';
   }
 
   si_rolAddModalShow() {
@@ -84,6 +86,11 @@ export class Si_usersEditModalComponent extends DialogComponent<Si_usersInterfac
   onSubmit(values: Si_usersInterface): void {
       this.submitted = true;
       if (this.form.valid) {
+
+          if (this.password === '') {
+              this.password = null;
+          }
+
           this.service
               .update({
                   idsi_user: this.idsi_user,

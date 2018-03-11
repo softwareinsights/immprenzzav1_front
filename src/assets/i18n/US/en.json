@@ -40,6 +40,8 @@
       },
       "menu": {
         "abonos": "Abono",
+        "accuracyestimacions": "Presición de Empleados en Estimación de Tareas",
+        "accuracytiempos": "Presición de Empleados en Tiempos Laborados",
         "alertas": "Alerta",
         "archivos": "Archivo",
         "areas": "Área",
@@ -60,7 +62,7 @@
         "ordenproductos": "Orden Producto",
         "ordentareas": "Orden Tarea",
         "ordentareaestados": "Orden Tarea Estado",
-        "personas": "Persona",
+        "personas": "Directorio",
         "productos": "Producto",
         "salidastocks": "Salidas de Stock",
         "sexos": "Sexo",

@@ -22,8 +22,6 @@ export class AlertasAddModalComponent extends DialogComponent<AlertasInterface, 
   empleado_idempleado: number;
   tipoalerta_idtipoalerta: number;
   mensaje: string;
-  vista: boolean;
-  leida: boolean;
 
   modalHeader: string;
   data: any;
@@ -32,9 +30,6 @@ export class AlertasAddModalComponent extends DialogComponent<AlertasInterface, 
   empleado_idempleadoAC: AbstractControl;
   tipoalerta_idtipoalertaAC: AbstractControl;
   mensajeAC: AbstractControl;
-  vistaAC: AbstractControl;
-  leidaAC: AbstractControl;
-
   constructor(
     private service: AlertasService,
     private empleadosService: EmpleadosService,
@@ -49,14 +44,10 @@ export class AlertasAddModalComponent extends DialogComponent<AlertasInterface, 
     'empleado_idempleadoAC' : ['',Validators.compose([Validators.required,Validators.maxLength(11)])],
     'tipoalerta_idtipoalertaAC' : ['',Validators.compose([Validators.required,Validators.maxLength(11)])],
     'mensajeAC' : ['',Validators.compose([Validators.required,Validators.maxLength(345)])],
-    'vistaAC' : [''],
-    'leidaAC' : [''],
     });
     this.empleado_idempleadoAC = this.form.controls['empleado_idempleadoAC'];
     this.tipoalerta_idtipoalertaAC = this.form.controls['tipoalerta_idtipoalertaAC'];
     this.mensajeAC = this.form.controls['mensajeAC'];
-    this.vistaAC = this.form.controls['vistaAC'];
-    this.leidaAC = this.form.controls['leidaAC'];
   }
   ngOnInit() {
       this.getEmpleado();
@@ -118,8 +109,8 @@ export class AlertasAddModalComponent extends DialogComponent<AlertasInterface, 
                   empleado_idempleado: this.empleado_idempleado,
                   tipoalerta_idtipoalerta: this.tipoalerta_idtipoalerta,
                   mensaje: this.mensaje,
-                  vista: this.vista,
-                  leida: this.leida,
+                  vista: false,
+                  leida: false,
         })
         .subscribe(
             (data: any) => {

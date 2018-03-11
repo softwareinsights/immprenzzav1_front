@@ -3,10 +3,46 @@ export const PAGES_MENU = [
     path: 'pages',
     children: [
     {
+        path: 'dashboard',
+        data: {
+        menu: {
+            title: 'general.menu.dashboard',
+            icon: 'ion-android-home',
+            selected: false,
+            expanded: false,
+            order: 0
+        }
+        }
+    },
+    {
         path: 'abonos',
         data: {
         menu: {
             title: 'general.menu.abonos',
+            icon: 'ion-social-buffer',
+            selected: false,
+            expanded: false,
+            order: 0
+        }
+        }
+    },
+    {
+        path: 'accuracyestimacions',
+        data: {
+        menu: {
+            title: 'general.menu.accuracyestimacions',
+            icon: 'ion-social-buffer',
+            selected: false,
+            expanded: false,
+            order: 0
+        }
+        }
+    },
+    {
+        path: 'accuracytiempos',
+        data: {
+        menu: {
+            title: 'general.menu.accuracytiempos',
             icon: 'ion-social-buffer',
             selected: false,
             expanded: false,
@@ -55,18 +91,6 @@ export const PAGES_MENU = [
         data: {
         menu: {
             title: 'general.menu.checkouts',
-            icon: 'ion-social-buffer',
-            selected: false,
-            expanded: false,
-            order: 0
-        }
-        }
-    },
-    {
-        path: 'ciudads',
-        data: {
-        menu: {
-            title: 'general.menu.ciudads',
             icon: 'ion-social-buffer',
             selected: false,
             expanded: false,
@@ -279,78 +303,6 @@ export const PAGES_MENU = [
         }
     },
     {
-        path: 'sexos',
-        data: {
-        menu: {
-            title: 'general.menu.sexos',
-            icon: 'ion-social-buffer',
-            selected: false,
-            expanded: false,
-            order: 0
-        }
-        }
-    },
-    {
-        path: 'si_modulos',
-        data: {
-        menu: {
-            title: 'general.menu.si_modulos',
-            icon: 'ion-social-buffer',
-            selected: false,
-            expanded: false,
-            order: 0
-        }
-        }
-    },
-    {
-        path: 'si_permisos',
-        data: {
-        menu: {
-            title: 'general.menu.si_permisos',
-            icon: 'ion-social-buffer',
-            selected: false,
-            expanded: false,
-            order: 0
-        }
-        }
-    },
-    {
-        path: 'si_reportes',
-        data: {
-        menu: {
-            title: 'general.menu.si_reportes',
-            icon: 'ion-social-buffer',
-            selected: false,
-            expanded: false,
-            order: 0
-        }
-        }
-    },
-    {
-        path: 'si_rols',
-        data: {
-        menu: {
-            title: 'general.menu.si_rols',
-            icon: 'ion-social-buffer',
-            selected: false,
-            expanded: false,
-            order: 0
-        }
-        }
-    },
-    {
-        path: 'si_users',
-        data: {
-        menu: {
-            title: 'general.menu.si_users',
-            icon: 'ion-social-buffer',
-            selected: false,
-            expanded: false,
-            order: 0
-        }
-        }
-    },
-    {
         path: 'stocks',
         data: {
         menu: {
@@ -387,10 +339,10 @@ export const PAGES_MENU = [
         }
     },
     {
-        path: 'tipoprecios',
+        path: 'si_permisos',
         data: {
         menu: {
-            title: 'general.menu.tipoprecios',
+            title: 'general.menu.si_permisos',
             icon: 'ion-social-buffer',
             selected: false,
             expanded: false,
@@ -399,17 +351,41 @@ export const PAGES_MENU = [
         }
     },
     {
-        path: 'dashboard',
+        path: 'si_rols',
         data: {
         menu: {
-            title: 'general.menu.dashboard',
-            icon: 'ion-android-home',
+            title: 'general.menu.si_rols',
+            icon: 'ion-social-buffer',
             selected: false,
             expanded: false,
             order: 0
         }
         }
-    }
+    },
+    {
+        path: 'si_users',
+        data: {
+        menu: {
+            title: 'general.menu.si_users',
+            icon: 'ion-social-buffer',
+            selected: false,
+            expanded: false,
+            order: 0
+        }
+        }
+    },
+    {
+        path: 'si_modulos',
+        data: {
+        menu: {
+            title: 'general.menu.si_modulos',
+            icon: 'ion-social-buffer',
+            selected: false,
+            expanded: false,
+            order: 0
+        }
+        }
+    },
     ]
 }
 ];

@@ -57,6 +57,12 @@ export class OrdenestadosAddModalComponent extends DialogComponent<OrdenestadosI
   ngOnInit() {
       this.getOrden();
       this.getEstado();
+
+            
+    // FECHA Y HORA ACTUAL
+    const date = this.authLocalstorage.getCurrentDateAndHour();
+    this.fecha = date.fecha;
+    this.hora = date.hora;
   }
   ordenAddModalShow() {
       const disposable = this.dialogService.addDialog(OrdensAddModalComponent)

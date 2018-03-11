@@ -39,18 +39,6 @@
                 <input [(ngModel)]="mensaje" [formControl]="mensajeAC" type="text" maxlength='345' class="form-control" id="inputmensajeAC" placeholder="Mensaje" required>
               </div>
             </div>
-            <div class="form-group row" [ngClass]="{'has-error': (!vistaAC.valid && vistaAC.touched), 'has-success': (vistaAC.valid && vistaAC.touched)}">
-              <label for="inputvistaAC" class="col-sm-3 form-check-label">Vista</label>
-              <div class="col-sm-9">
-                <input [(ngModel)]="vista" [formControl]="vistaAC" type="checkbox" class="form-check-input" id="inputvistaAC">
-              </div>
-            </div>
-            <div class="form-group row" [ngClass]="{'has-error': (!leidaAC.valid && leidaAC.touched), 'has-success': (leidaAC.valid && leidaAC.touched)}">
-              <label for="inputleidaAC" class="col-sm-3 form-check-label">Leida</label>
-              <div class="col-sm-9">
-                <input [(ngModel)]="leida" [formControl]="leidaAC" type="checkbox" class="form-check-input" id="inputleidaAC">
-              </div>
-            </div>
           </ba-card>
         </div>
         <div class="modal-footer">

@@ -20,13 +20,13 @@
                     <tbody>
                         <tr *ngFor='let item of mf.data;  let i = index'>
                             <td>
-                                <button title='Agregar Salidas de Stock' (click)='insertSalidastock(item)' class='btn btn-sm btn-success'><i class='fa fa-plus'></i></button>
-                                <button title='Ver Salidas de Stock' (click)='viewSalidastock(item)' class='btn btn-sm btn-warning'><i class='fa fa-eye'></i></button>
+                                <button title='Agregar Salidas de Stock' (click)='insertSalidastock(item)' class='btn btn-sm btn-success'><i class='fa fa-plus'></i> Agregar Salidas de Stock</button>
+                                <button title='Ver Salidas de Stock' (click)='viewSalidastock(item)' class='btn btn-sm btn-warning'><i class='fa fa-eye'></i> Ver Salidas de Stock</button>
                                 <button title='Editar Registro' (click)='editModalShow(item)' class='btn btn-sm btn-info'><i class='fa fa-edit'></i></button>
                                 <button title='Eliminar Registro' (click)='onDeleteConfirm($event, item)' class='btn btn-sm btn-danger'><i class='fa fa-trash'></i></button>
                             </td>
-                            <td>{{ item.nombre  }}</td>
-                            <td>{{ item.cantidad  }}</td>
+                            <td [ngClass]="{'text-danger': item.cantidad <= 5 }">{{ item.nombre  }}</td>
+                            <td [ngClass]="{'text-danger': item.cantidad <= 5 }">{{ item.cantidad }}</td>
                         </tr>
                     </tbody>
                     <tfoot>

@@ -73,6 +73,7 @@ export class ClientesTableComponent implements OnInit {
     ordenShowToast(result) {
         if (result.success) {
             this.toastrService.success(result.message);
+            this.getAll();
         } else {
             this.toastrService.error(result.message);
         }

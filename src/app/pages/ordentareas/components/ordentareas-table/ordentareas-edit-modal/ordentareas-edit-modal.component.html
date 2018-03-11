@@ -26,7 +26,7 @@
               <label for="inputordenproducto_idordenproductoAC" class="col-sm-3 form-control-label">Orden Producto</label>
               <div class="col-sm-7">
                <select [(ngModel)]="ordenproducto_idordenproducto" [formControl]="ordenproducto_idordenproductoAC" class="form-control" id="inputordenproducto_idordenproductoAC" required>
-                 <option value="{{item.idordenproducto}}" *ngFor="let item of _ordenproducto">{{item.producto_producto_idproducto}}</option>
+                 <option value="{{item.idordenproducto}}" *ngFor="let item of _ordenproducto">{{item.producto_producto_idproducto}} - {{item.cliente}}</option>
                </select>
               </div>
               <div class='col-sm-2'>
@@ -36,7 +36,7 @@
             <div class="form-group row" [ngClass]="{'has-error': (!especificacionesAC.valid && especificacionesAC.touched), 'has-success': (especificacionesAC.valid && especificacionesAC.touched)}">
               <label for="inputespecificacionesAC" class="col-sm-3 form-control-label">Especificaciones</label>
               <div class="col-sm-9">
-                <input [(ngModel)]="especificaciones" [formControl]="especificacionesAC" type="text" maxlength='245' class="form-control" id="inputespecificacionesAC" placeholder="Especificaciones" >
+                <input [(ngModel)]="especificaciones" [formControl]="especificacionesAC" type="text" maxlength='245' class="form-control" id="inputespecificacionesAC" placeholder="Especificaciones" required>
               </div>
             </div>
             <div class="form-group row" [ngClass]="{'has-error': (!fechaInicioAC.valid && fechaInicioAC.touched), 'has-success': (fechaInicioAC.valid && fechaInicioAC.touched)}">

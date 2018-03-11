@@ -1,6 +1,9 @@
+import { FilesUploadModalComponent } from './../../../../shared/components/files-upload-modal/files-upload-modal.component';
+import { UploadModalComponent } from './../../../../shared/components/upload-modal/upload-modal.component';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DialogService } from 'ng2-bootstrap-modal';
 import { ToastrService } from 'ngx-toastr';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { OrdentareasInterface } from './ordentareas.interface';
 import { OrdentareasResponseInterface } from './ordentareas-response.interface';
 import { Component, OnInit } from '@angular/core';
@@ -30,7 +33,8 @@ export class OrdentareasTableComponent implements OnInit {
     constructor(
       private service: OrdentareasService, 
       private toastrService: ToastrService, 
-      private dialogService: DialogService, 
+      private dialogService: DialogService,
+      private modalService: NgbModal,
       private route: ActivatedRoute, 
       private router: Router) {
     }
@@ -46,20 +50,51 @@ export class OrdentareasTableComponent implements OnInit {
           this.findByIdOrdenproducto(idordenproducto);
           this.backpage = true;
         }
+
+
+        
+        if (params['idempleadotarea'] !== undefined) {
+          const idempleadotarea = +params['idempleadotarea'];
+          this.findByIdEmpleadotarea(idempleadotarea);
+          this.backpage = true;
+        }
+
+        
         if (!this.backpage) {
           this.getAll();
         }
       });
     }
+
+
+
+    private findByIdEmpleadotarea(id: number): void {
+      this.service
+        .findByIdEmpleadotarea(id)
+        .subscribe(
+            (data: OrdentareasResponseInterface) => {
+                if (data.success) {
+                  this.data = data.result;
+                } else {
+                  this.toastrService.error(data.message);
+                }
+            },
+            error => console.log(error),
+            () => console.log('Get all Items complete'))
+    }
+
+
+
+
     private findByIdTarea(id: number): void {
       this.service
         .findByIdTarea(id)
         .subscribe(
             (data: OrdentareasResponseInterface) => {
                 if (data.success) {
-                this.data = data.result;
+                  this.data = data.result;
                 } else {
-                this.toastrService.error(data.message);
+                  this.toastrService.error(data.message);
                 }
             },
             error => console.log(error),
@@ -71,9 +106,9 @@ export class OrdentareasTableComponent implements OnInit {
         .subscribe(
             (data: OrdentareasResponseInterface) => {
                 if (data.success) {
-                this.data = data.result;
+                  this.data = data.result;
                 } else {
-                this.toastrService.error(data.message);
+                  this.toastrService.error(data.message);
                 }
             },
             error => console.log(error),
@@ -82,10 +117,36 @@ export class OrdentareasTableComponent implements OnInit {
     backPage() {
         window.history.back();
     }
+
+
+
+    finalizarOrdenTarea(ordentareas: OrdentareasInterface) {
+      const ordentareaestado: OrdentareaestadosInterface = {
+        'ordentarea_idordentarea': ordentareas.idordentarea,
+        'estadoscrum_idestadoscrum': 4,
+      };
+      const disposable = this.dialogService.addDialog(OrdentareaestadosAddModalComponent, ordentareaestado)
+      .subscribe( data => {
+          if (data) {
+          this.ordentareaestadoShowToast(data);
+          }
+      });
+    }
+
+
+
+    addFile(id: number, descripcion: string) {
+      const activeModal = this.modalService.open(UploadModalComponent, { size: 'lg' });
+      activeModal.componentInstance.modalHeader = 'Agregar Archivos a Tarea de Orden';
+      activeModal.componentInstance.id = id;
+      activeModal.componentInstance.descripcion = descripcion;
+      activeModal.componentInstance.referencia = 'Orden';
+    }
+
     insertArchivo(ordentareas: OrdentareasInterface) {
       const archivo: ArchivosInterface = {
         ordentarea_idordentarea: ordentareas.idordentarea
-      }
+      };
       const disposable = this.dialogService.addDialog(ArchivosAddModalComponent, archivo)
       .subscribe( data => {
           if (data) {
@@ -106,7 +167,7 @@ export class OrdentareasTableComponent implements OnInit {
     insertEmpleadotarea(ordentareas: OrdentareasInterface) {
       const empleadotarea: EmpleadotareasInterface = {
         ordentarea_idordentarea: ordentareas.idordentarea
-      }
+      };
       const disposable = this.dialogService.addDialog(EmpleadotareasAddModalComponent, empleadotarea)
       .subscribe( data => {
           if (data) {
@@ -127,7 +188,7 @@ export class OrdentareasTableComponent implements OnInit {
     insertOrdentareaestado(ordentareas: OrdentareasInterface) {
       const ordentareaestado: OrdentareaestadosInterface = {
         ordentarea_idordentarea: ordentareas.idordentarea
-      }
+      };
       const disposable = this.dialogService.addDialog(OrdentareaestadosAddModalComponent, ordentareaestado)
       .subscribe( data => {
           if (data) {
@@ -138,6 +199,7 @@ export class OrdentareasTableComponent implements OnInit {
     ordentareaestadoShowToast(result) {
         if (result.success) {
             this.toastrService.success(result.message);
+            this.getAll();
         } else {
             this.toastrService.error(result.message);
         }
@@ -178,7 +240,22 @@ export class OrdentareasTableComponent implements OnInit {
     showToast(result) {
       if (result.success) {
         this.toastrService.success(result.message);
-        this.getAll();
+
+        this.route.params.subscribe(params => {
+          if (params['idtarea'] !== undefined) {
+            const idtarea = +params['idtarea'];
+            this.findByIdTarea(idtarea);
+            this.backpage = true;
+          }
+          if (params['idordenproducto'] !== undefined) {
+            const idordenproducto = +params['idordenproducto'];
+            this.findByIdOrdenproducto(idordenproducto);
+            this.backpage = true;
+          }
+          if (!this.backpage) {
+            this.getAll();
+          }
+        });
       } else {
         this.toastrService.error(result.message);
       }

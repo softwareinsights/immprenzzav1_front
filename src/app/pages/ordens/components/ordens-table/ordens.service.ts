@@ -25,6 +25,19 @@ export class OrdensService {
         this.endPoint = `${this._configuration.ServerWithApiUrl}orden`;
        }
        
+        entregarOrden = ( orden: OrdensInterface ) : Observable<OrdensResponseInterface> => {
+           return this._http.patch(`${this.endPoint}/entrega/`, orden, this.options)
+               .map((response: Response) => response.json())
+               .catch(this.handleError);
+       }
+
+        finalizarOrden = ( orden: OrdensInterface ) : Observable<OrdensResponseInterface> => {
+           return this._http.patch(`${this.endPoint}/finaliza/`, orden, this.options)
+               .map((response: Response) => response.json())
+               .catch(this.handleError);
+       }
+
+
        updateMontos = ( idorden: number ) : Observable<OrdensResponseInterface> => {
            return this._http.get(`${this.endPoint}/montos/${idorden}`, this.options)
                .map((response: Response) => response.json())

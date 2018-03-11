@@ -34,7 +34,7 @@
                                 <mfDefaultSorter by='fechaIngreso'>Fecha de Ingreso</mfDefaultSorter>
                             </th>
                             <th style='width: 8%'>
-                                <mfDefaultSorter by='eficiencia'>Eficiencia 0-5</mfDefaultSorter>
+                                <mfDefaultSorter by='eficiencia'>Eficiencia Tiempo</mfDefaultSorter>
                             </th>
                             <th style='width: 8%'>
                                 <mfDefaultSorter by='si_user_si_user_idsi_user'>Usuario del Sistema</mfDefaultSorter>
@@ -56,14 +56,12 @@
                     <tbody>
                         <tr *ngFor='let item of mf.data;  let i = index'>
                             <td>
-                                <button title='Agregar Alerta' (click)='insertAlerta(item)' class='btn btn-sm btn-success'><i class='fa fa-plus'></i></button>
-                                <button title='Ver Alerta' (click)='viewAlerta(item)' class='btn btn-sm btn-warning'><i class='fa fa-eye'></i></button>
-                                <button title='Agregar Checkout' (click)='insertCheckout(item)' class='btn btn-sm btn-success'><i class='fa fa-plus'></i></button>
-                                <button title='Ver Checkout' (click)='viewCheckout(item)' class='btn btn-sm btn-warning'><i class='fa fa-eye'></i></button>
-                                <button title='Agregar Egreso' (click)='insertEgresoconcepto(item)' class='btn btn-sm btn-success'><i class='fa fa-plus'></i></button>
-                                <button title='Ver Egreso' (click)='viewEgresoconcepto(item)' class='btn btn-sm btn-warning'><i class='fa fa-eye'></i></button>
-                                <button title='Agregar Empleado Tarea' (click)='insertEmpleadotarea(item)' class='btn btn-sm btn-success'><i class='fa fa-plus'></i></button>
-                                <button title='Ver Empleado Tarea' (click)='viewEmpleadotarea(item)' class='btn btn-sm btn-warning'><i class='fa fa-eye'></i></button>
+                                <button title='Agregar Checkout' (click)='insertCheckout(item)' class='btn btn-sm btn-success'><i class='fa fa-plus'></i> Agregar Checkout</button>
+                                <button title='Ver Checkout' (click)='viewCheckout(item)' class='btn btn-sm btn-warning'><i class='fa fa-eye'></i> Ver Checkout</button>
+                                <button title='Agregar Egreso' (click)='insertEgresoconcepto(item)' class='btn btn-sm btn-success'><i class='fa fa-plus'></i> Agregar Egreso</button>
+                                <button title='Ver Egreso' (click)='viewEgresoconcepto(item)' class='btn btn-sm btn-warning'><i class='fa fa-eye'></i> Ver Egreso</button>
+                                <button title='Agregar Empleado Tarea' (click)='insertEmpleadotarea(item)' class='btn btn-sm btn-success'><i class='fa fa-plus'></i> Agregar Tarea</button>
+                                <button title='Ver Empleado Tarea' (click)='viewEmpleadotarea(item)' class='btn btn-sm btn-warning'><i class='fa fa-eye'></i> Ver Tarea</button>
                                 <button title='Editar Registro' (click)='editModalShow(item)' class='btn btn-sm btn-info'><i class='fa fa-edit'></i></button>
                                 <button title='Eliminar Registro' (click)='onDeleteConfirm($event, item)' class='btn btn-sm btn-danger'><i class='fa fa-trash'></i></button>
                             </td>
@@ -71,7 +69,7 @@
                             <td>{{ item.persona_persona_idpersona }}</td>
                             <td>{{ item.idlector  }}</td>
                             <td>{{ item.fechaIngreso | date:'dd/MM/y' }}</td>
-                            <td>{{ item.eficiencia  }}</td>
+                            <td [ngClass]="{'text-success': item.eficiencia >79, 'text-danger': item.eficiencia < 51}">{{ item.eficiencia  }}</td>
                             <td>{{ item.si_user_si_user_idsi_user }}</td>
                             <td>{{ item.horaEntrada  }}</td>
                             <td>{{ item.horaSalida  }}</td>
