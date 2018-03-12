@@ -1,1 +1,0 @@
-export * from './tipoprecios.component';
