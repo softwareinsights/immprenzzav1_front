@@ -37,23 +37,21 @@
                         <tr *ngFor='let item of mf.data;  let i = index'>
                             <td>
                                 <button title='Imprimir Abono' (click)='printAbono(item)' class='btn btn-sm btn-primary'><i class='fa fa-print'></i> Imprimir Abono</button>
-                                
                                 <button title='Editar Registro' (click)='editModalShow(item)' class='btn btn-sm btn-info'><i class='fa fa-edit'></i></button>
-                                
                                 <button title='Eliminar Registro' (click)='onDeleteConfirm($event, item)' class='btn btn-sm btn-danger'><i class='fa fa-trash'></i></button>
                             </td>
                             <td>{{ item.orden_orden_idorden }}</td>
-                            <td>{{ item.adeudoAnterior  }}</td>
-                            <td>{{ item.montoPagado  }}</td>
-                            <td>{{ item.adeudoActual  }}</td>
+                            <td>{{ item.adeudoAnterior | currency: 'MXN' }}</td>
+                            <td>{{ item.montoPagado | currency: 'MXN' }}</td>
+                            <td>{{ item.adeudoActual | currency: 'MXN' }}</td>
                             <td>{{ item.fecha | date:'dd/MM/y' }}</td>
-                            <td>{{ item.hora  }}</td>
+                            <td>{{ item.hora }}</td>
                         </tr>
                     </tbody>
                     <tfoot>
                         <tr>
                             <td colspan='5'>
-                                <mfBootstrapPaginator [rowsOnPageSet]='[5,10,15]'></mfBootstrapPaginator>
+                                <mfBootstrapPaginator [rowsOnPageSet]='[5,10,15,25,50,100]'></mfBootstrapPaginator>
                             </td>
                         </tr>
                     </tfoot>
@@ -62,7 +60,7 @@
         </ba-card>
     </div>
     <div class='row'>
-        <div class='col-sm-2'>
+        <div class='col-sm-2' *ngIf="!backpage">
             <button (click)='addModalShow()' class='btn btn-success'><i class='fa fa-plus'></i> Agregar</button>
         </div>
         <div class='col-sm-2' *ngIf="backpage">

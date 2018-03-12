@@ -57,28 +57,28 @@
                     <tbody>
                         <tr *ngFor='let item of mf.data;  let i = index'>
                             <td>
-                                <button title='Agregar Orden Producto' (click)='insertOrdenproducto(item)' class='btn btn-sm btn-success'><i class='fa fa-plus'></i></button>
-                                <button title='Ver Orden Producto' (click)='viewOrdenproducto(item)' class='btn btn-sm btn-warning'><i class='fa fa-eye'></i></button>
-                                <button title='Agregar Tarea' (click)='insertTarea(item)' class='btn btn-sm btn-success'><i class='fa fa-plus'></i></button>
-                                <button title='Ver Tarea' (click)='viewTarea(item)' class='btn btn-sm btn-warning'><i class='fa fa-eye'></i></button>
+                                <button title='Agregar Orden Producto' (click)='insertOrdenproducto(item)' class='btn btn-sm btn-success'><i class='fa fa-plus'></i> Agregar Orden</button>
+                                <button title='Ver Orden Producto' (click)='viewOrdenproducto(item)' class='btn btn-sm btn-warning'><i class='fa fa-eye'></i> Ver Orden(es)</button>
+                                <button title='Agregar Tarea' (click)='insertTarea(item)' class='btn btn-sm btn-success'><i class='fa fa-plus'></i> Agregar Tarea</button>
+                                <button title='Ver Tarea' (click)='viewTarea(item)' class='btn btn-sm btn-warning'><i class='fa fa-eye'></i> Ver Tarea(s)</button>
                                 <button title='Editar Registro' (click)='editModalShow(item)' class='btn btn-sm btn-info'><i class='fa fa-edit'></i></button>
                                 <button title='Eliminar Registro' (click)='onDeleteConfirm($event, item)' class='btn btn-sm btn-danger'><i class='fa fa-trash'></i></button>
                             </td>
                             <td>{{ item.nombre  }}</td>
                             <td>{{ item.area_area_idarea }}</td>
                             <td>{{ item.duracionEstimada  }}</td>
-                            <td>{{ item.precioPublico  }}</td>
-                            <td>{{ item.precioMayoreo  }}</td>
-                            <td>{{ item.precioMaquila  }}</td>
-                            <td>{{ item.extraPor  }}</td>
-                            <td>{{ item.extraPrecio  }}</td>
+                            <td>{{ item.precioPublico | currency: 'MXN' }}</td>
+                            <td>{{ item.precioMayoreo | currency: 'MXN' }}</td>
+                            <td>{{ item.precioMaquila | currency: 'MXN' }}</td>
+                            <td>{{ item.extraPor }}</td>
+                            <td>{{ item.extraPrecio | currency: 'MXN' }}</td>
                             <td>{{ item.formula_formula_idformula }}</td>
                         </tr>
                     </tbody>
                     <tfoot>
                         <tr>
                             <td colspan='5'>
-                                <mfBootstrapPaginator [rowsOnPageSet]='[5,10,15]'></mfBootstrapPaginator>
+                                <mfBootstrapPaginator [rowsOnPageSet]='[5,10,15,25,50,100]'></mfBootstrapPaginator>
                             </td>
                         </tr>
                     </tfoot>
@@ -87,7 +87,7 @@
         </ba-card>
     </div>
     <div class='row'>
-        <div class='col-sm-2'>
+        <div class='col-sm-2' *ngIf="!backpage">
             <button (click)='addModalShow()' class='btn btn-success'><i class='fa fa-plus'></i> Agregar</button>
         </div>
         <div class='col-sm-2' *ngIf="backpage">

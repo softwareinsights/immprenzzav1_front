@@ -84,7 +84,8 @@ export class EmpleadotareasAddModalComponent extends DialogComponent<Empleadotar
       }
   }
   getEmpleado() {
-      this.empleadosService.allByAreaWithIdOrdenTarea(this.ordentarea_idordentarea)
+      const ordentarea_idordentarea = this.ordentarea_idordentarea || 0;
+      this.empleadosService.allByAreaWithIdOrdenTarea(ordentarea_idordentarea)
       .subscribe(
           (data: any) => this._empleado = data.result,
       );

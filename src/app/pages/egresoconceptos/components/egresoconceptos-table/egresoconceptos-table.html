@@ -8,7 +8,7 @@
                         <tr>
                             <th colspan='4' class='text-left'>
                                 Filtrar por Fecha:
-                                <input class='form-control' [(ngModel)]='filterQuery1' />
+                                <input class='form-control' [(ngModel)]='filterQuery1' type="date"/>
                             </th>
                             <th colspan='5' class='text-left'>
                                 Filtrar por Concepto:
@@ -67,7 +67,7 @@
                     <tfoot>
                         <tr>
                             <td colspan='5'>
-                                <mfBootstrapPaginator [rowsOnPageSet]='[5,10,15]'></mfBootstrapPaginator>
+                                <mfBootstrapPaginator [rowsOnPageSet]='[5,10,15,25,50,100]'></mfBootstrapPaginator>
                             </td>
                         </tr>
                     </tfoot>
@@ -76,7 +76,7 @@
         </ba-card>
     </div>
     <div class='row'>
-        <div class='col-sm-2'>
+        <div class='col-sm-2' *ngIf="!backpage">
             <button (click)='addModalShow()' class='btn btn-success'><i class='fa fa-plus'></i> Agregar</button>
         </div>
         <div class='col-sm-2' *ngIf="backpage">

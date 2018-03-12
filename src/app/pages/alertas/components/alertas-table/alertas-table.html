@@ -95,7 +95,7 @@
 
 
     <div class='row'>
-        <div class='col-sm-2'>
+        <div class='col-sm-2' *ngIf="!backpage">
             <button (click)='addModalShow()' class='btn btn-success'><i class='fa fa-plus'></i> Agregar</button>
         </div>
         <div class='col-sm-2' *ngIf="backpage">

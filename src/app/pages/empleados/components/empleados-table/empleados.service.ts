@@ -40,14 +40,20 @@ export class EmpleadosService {
                .catch(this.handleError);
        }
        allByAreaWithIdOrdenTarea = (idordentarea) : Observable<EmpleadosResponseInterface> => {
-           return this._http.get(`${this.endPoint}/ordentarea/${idordentarea}`, this.options)
-               .map((response: Response) => response.json())
-               .catch(this.handleError);
+           if (!idordentarea) {
+                return this._http.get(this.endPoint, this.options)
+                    .map((response: Response) => response.json())
+                    .catch(this.handleError);
+           } else {
+                return this._http.get(`${this.endPoint}/ordentarea/${idordentarea}`, this.options)
+                    .map((response: Response) => response.json())
+                    .catch(this.handleError);
+           }
        }
        all = () : Observable<EmpleadosResponseInterface> => {
-           return this._http.get(this.endPoint, this.options)
-               .map((response: Response) => response.json())
-               .catch(this.handleError);
+            return this._http.get(this.endPoint, this.options)
+                .map((response: Response) => response.json())
+                .catch(this.handleError);
        }
        findById = ( id ) : Observable<EmpleadosResponseInterface> => {
            return this._http.get(`${this.endPoint}/${id}`, this.options)

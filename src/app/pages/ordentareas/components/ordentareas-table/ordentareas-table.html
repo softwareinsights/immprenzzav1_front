@@ -53,22 +53,19 @@
                     <tbody>
                         <tr *ngFor='let item of mf.data;  let i = index'>
                             <td>
-
                                 <button title='Validar y Finalizar' (click)='finalizarOrdenTarea(item)' class='btn btn-sm btn-info'><i class='fa fa-check'></i> Validar y Finalizar</button>
-                                
-
                                 <button title='Cargar Archivos' (click)='addFile(item.idordentarea, item.especificaciones)' class='btn btn-sm btn-success'><i class='fa fa-upload'></i> Cargar Archivos</button>
                                 <button title='Agregar Archivo' (click)='insertArchivo(item)' class='btn btn-sm btn-success'><i class='fa fa-plus'></i> Agregar Archivo Desde Web</button>
-                                <button title='Ver Archivo' (click)='viewArchivo(item)' class='btn btn-sm btn-warning'><i class='fa fa-eye'></i> Ver Archivos</button>
+                                <button title='Ver Archivo' (click)='viewArchivo(item)' class='btn btn-sm btn-warning'><i class='fa fa-eye'></i> Ver Archivo(s)</button>
                                 <button title='Agregar Empleado Tarea' (click)='insertEmpleadotarea(item)' class='btn btn-sm btn-success'><i class='fa fa-plus'></i> Enlazar Empleado a Tarea</button>
                                 <button title='Ver Empleado Tarea' (click)='viewEmpleadotarea(item)' class='btn btn-sm btn-warning'><i class='fa fa-eye'></i> Ver Empleado Enlazado a Tarea</button>
                                 <button title='Agregar Orden Tarea Estado' (click)='insertOrdentareaestado(item)' class='btn btn-sm btn-success'><i class='fa fa-plus'></i> Agregar Estado</button>
-                                <button title='Ver Orden Tarea Estado' (click)='viewOrdentareaestado(item)' class='btn btn-sm btn-warning'><i class='fa fa-eye'></i> Ver Estados</button>
+                                <button title='Ver Orden Tarea Estado' (click)='viewOrdentareaestado(item)' class='btn btn-sm btn-warning'><i class='fa fa-eye'></i> Ver Estado(s)</button>
                                 <button title='Editar Registro' (click)='editModalShow(item)' class='btn btn-sm btn-info'><i class='fa fa-edit'></i></button>
                                 <button title='Eliminar Registro' (click)='onDeleteConfirm($event, item)' class='btn btn-sm btn-danger'><i class='fa fa-trash'></i></button>
                             </td>
                             <td>{{ item.tarea_tarea_idtarea }}</td>
-                            <td>{{ item.estado_estado_idestado  }}</td>
+                            <td [ngClass]="{'text-success': item.estado_estado_idestado === 'HECHA', 'text-danger': item.estado_estado_idestado === 'CANCELADA'}">{{ item.estado_estado_idestado  }}</td>
                             <td>{{ item.cliente  }}</td>
                             <td>{{ item.ordenproducto_ordenproducto_idordenproducto }}</td>
                             <td>{{ item.especificaciones  }}</td>
@@ -81,7 +78,7 @@
                     <tfoot>
                         <tr>
                             <td colspan='5'>
-                                <mfBootstrapPaginator [rowsOnPageSet]='[5,10,15]'></mfBootstrapPaginator>
+                                <mfBootstrapPaginator [rowsOnPageSet]='[5,10,15,25,50,100]'></mfBootstrapPaginator>
                             </td>
                         </tr>
                     </tfoot>

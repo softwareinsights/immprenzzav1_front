@@ -317,6 +317,101 @@ export class OrdensTableComponent implements OnInit {
 
 
 
+    printReporte(ordens: any) {
+      let innerHTML = `
+        <html>
+        <head>
+        <title>
+          Reporte de Órdenes
+        </title>
+        </head>
+        <body>
+          <h1 style="text-align: center;">Reporte de Órdenes</h1>
+          <table>
+            <tr>
+              <th>
+                Nó de Orden
+              </th>
+              <th>
+                Cliente
+              </th>
+              <th>
+                Subtotal
+              </th>
+              <th>
+                Total
+              </th>
+              <th>
+                Monto Cubierto
+              </th>
+              <th>
+                Monto Abonado
+              </th>
+              <th>
+                Monto Adeudado
+              </th>
+              <th>
+                Factura
+              </th>
+              <th>
+                Fecha
+              </th>
+              <th>
+                Hora
+              </th>
+            </tr>`;
+
+      for (let element in ordens) {
+
+        innerHTML += `
+            <tr>
+              <td>
+                ${ordens[element].idorden}
+              </td>
+              <td>
+                ${ordens[element].cliente_cliente_idcliente}
+              </td>
+              <td style="text-align: right;">
+                ${ordens[element].subtotal}
+              </td>
+              <td style="text-align: right;">
+                ${ordens[element].total}
+              </td>
+              <td style="text-align: right;">
+                ${ordens[element].cubierto}
+              </td>
+              <td style="text-align: right;">
+                ${ordens[element].abonado}
+              </td>
+              <td style="text-align: right;">
+                ${ordens[element].adeudo}
+              </td>
+              <td>
+                ${(ordens[element].factura) ? 'Si' : 'No'}
+              </td>
+              <td>
+                ${ordens[element].fecha}
+              </td>
+              <td>
+                ${ordens[element].hora}
+              </td>
+            </tr>`;
+      }
+
+      innerHTML += 
+          `</table>
+        </body>
+        </html> 
+      `;
+      const ventimp = window.open(' ', 'popimpr');
+      ventimp.document.write(innerHTML);
+      ventimp.document.close();
+      ventimp.print();
+      ventimp.close();
+    }
+
+
+
     private findByIdCliente(id: number): void {
       this.service
         .findByIdCliente(id)

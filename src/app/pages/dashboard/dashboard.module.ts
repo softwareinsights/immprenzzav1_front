@@ -1,3 +1,5 @@
+import { FeedEmpleados } from './feed-empleados/feed-empleados.component';
+import { FeedEmpleadosService } from './feed-empleados/feed-empleados.service';
 import { NgModule }      from '@angular/core';
 import { CommonModule }  from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -38,6 +40,7 @@ import { UsersMapService } from './usersMap/usersMap.service';
     UsersMap,
     LineChart,
     Feed,
+    FeedEmpleados,
     Todo,
     Calendar,
     Dashboard
@@ -45,6 +48,7 @@ import { UsersMapService } from './usersMap/usersMap.service';
   providers: [
     CalendarService,
     FeedService,
+    FeedEmpleadosService,
     LineChartService,
     PieChartService,
     TodoService,

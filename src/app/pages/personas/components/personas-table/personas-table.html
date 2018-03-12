@@ -73,10 +73,12 @@
                     <tbody>
                         <tr *ngFor='let item of mf.data;  let i = index'>
                             <td>
+                                <!--
                                 <button title='Agregar Cliente' (click)='insertCliente(item)' class='btn btn-sm btn-success'><i class='fa fa-plus'></i></button>
                                 <button title='Ver Cliente' (click)='viewCliente(item)' class='btn btn-sm btn-warning'><i class='fa fa-eye'></i></button>
                                 <button title='Agregar Empleado' (click)='insertEmpleado(item)' class='btn btn-sm btn-success'><i class='fa fa-plus'></i></button>
                                 <button title='Ver Empleado' (click)='viewEmpleado(item)' class='btn btn-sm btn-warning'><i class='fa fa-eye'></i></button>
+                                -->
                                 <button title='Editar Registro' (click)='editModalShow(item)' class='btn btn-sm btn-info'><i class='fa fa-edit'></i></button>
                                 <button title='Eliminar Registro' (click)='onDeleteConfirm($event, item)' class='btn btn-sm btn-danger'><i class='fa fa-trash'></i></button>
                             </td>
@@ -94,7 +96,7 @@
                     <tfoot>
                         <tr>
                             <td colspan='5'>
-                                <mfBootstrapPaginator [rowsOnPageSet]='[5,10,15]'></mfBootstrapPaginator>
+                                <mfBootstrapPaginator [rowsOnPageSet]='[5,10,15,25,50,100]'></mfBootstrapPaginator>
                             </td>
                         </tr>
                     </tfoot>
@@ -103,7 +105,7 @@
         </ba-card>
     </div>
     <div class='row'>
-        <div class='col-sm-2'>
+        <div class='col-sm-2' *ngIf="!backpage">
             <button (click)='addModalShow()' class='btn btn-success'><i class='fa fa-plus'></i> Agregar</button>
         </div>
         <div class='col-sm-2' *ngIf="backpage">

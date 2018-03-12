@@ -39,7 +39,7 @@
                             </td>
                             <td>{{ item.empleado_empleado_idempleado }}</td>
                             <td>{{ item.fecha | date:'dd/MM/y' }}</td>
-                            <td>{{ item.retraso | date:'00:00:00' }}</td>
+                            <td>{{ item.retraso }}</td>
                             <td [ngClass]="{'text-success': item.accuracy > 80 , 'text-danger': item.accuracy < 50 }">% {{ item.accuracy }}</td>
                         </tr>
                     </tbody>
@@ -55,10 +55,10 @@
         </ba-card>
     </div>
     <div class='row'>
-        <div class='col-sm-2'>
+        <div class='col-sm-2' *ngIf="!backpage">
             <button (click)='addModalShow()' class='btn btn-success'><i class='fa fa-plus'></i> Agregar</button>
         </div>
-        <div class='col-sm-2'>
+        <div class='col-sm-2' *ngIf="!backpage">
             <button (click)='calcularPresicion()' class='btn btn-info'><i class='fa fa-enginne'></i> Calcular Presición de Empleados</button>
         </div>
         <div class='col-sm-2' *ngIf="backpage">

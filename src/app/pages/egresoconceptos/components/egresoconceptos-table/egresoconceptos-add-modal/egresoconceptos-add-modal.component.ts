@@ -77,6 +77,11 @@ export class EgresoconceptosAddModalComponent extends DialogComponent<Egresoconc
   ngOnInit() {
       this.getConcepto();
       this.getEmpleado();
+      
+    // FECHA Y HORA ACTUAL
+    const date = this.authLocalstorage.getCurrentDateAndHour();
+    this.fecha = date.fecha;
+    this.hora = date.hora;
   }
   conceptoAddModalShow() {
       const disposable = this.dialogService.addDialog(ConceptosAddModalComponent)
