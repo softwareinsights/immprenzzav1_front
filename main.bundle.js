@@ -274,7 +274,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var Configuration = (function () {
     function Configuration() {
         this.Server = 'http://ec2-52-34-75-49.us-west-2.compute.amazonaws.com:3000/';
-        //Server: string = 'http://localhost:3000/';
+        // Server: string = 'http://localhost:3000/';
         this.ApiUrl = '';
         this.imageServerWithApiUrl = 'http://aidihosting.com/proyectos/proyectura_api/v1/';
         // imageServerWithApiUrl: string = 'http://localhost/proyectura_api/v1/';
@@ -15707,18 +15707,6 @@ var PAGES_MENU = [
                 }
             },
             {
-                path: 'accuracyestimacions',
-                data: {
-                    menu: {
-                        title: 'general.menu.accuracyestimacions',
-                        icon: 'ion-social-buffer',
-                        selected: false,
-                        expanded: false,
-                        order: 0
-                    }
-                }
-            },
-            {
                 path: 'accuracytiempos',
                 data: {
                     menu: {
@@ -15843,30 +15831,6 @@ var PAGES_MENU = [
                 data: {
                     menu: {
                         title: 'general.menu.empleadotareaestados',
-                        icon: 'ion-social-buffer',
-                        selected: false,
-                        expanded: false,
-                        order: 0
-                    }
-                }
-            },
-            {
-                path: 'estados',
-                data: {
-                    menu: {
-                        title: 'general.menu.estados',
-                        icon: 'ion-social-buffer',
-                        selected: false,
-                        expanded: false,
-                        order: 0
-                    }
-                }
-            },
-            {
-                path: 'estadoscrums',
-                data: {
-                    menu: {
-                        title: 'general.menu.estadoscrums',
                         icon: 'ion-social-buffer',
                         selected: false,
                         expanded: false,

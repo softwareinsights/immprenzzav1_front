@@ -679,10 +679,28 @@ var OrdentareasTableComponent = (function () {
             }
         });
     };
+    OrdentareasTableComponent.prototype.refill = function () {
+        var _this = this;
+        this.route.params.subscribe(function (params) {
+            if (params['idtarea'] !== undefined) {
+                var idtarea = +params['idtarea'];
+                _this.findByIdTarea(idtarea);
+                _this.backpage = true;
+            }
+            if (params['idordenproducto'] !== undefined) {
+                var idordenproducto = +params['idordenproducto'];
+                _this.findByIdOrdenproducto(idordenproducto);
+                _this.backpage = true;
+            }
+            if (!_this.backpage) {
+                _this.getAll();
+            }
+        });
+    };
     OrdentareasTableComponent.prototype.ordentareaestadoShowToast = function (result) {
         if (result.success) {
             this.toastrService.success(result.message);
-            this.getAll();
+            this.refill();
         }
         else {
             this.toastrService.error(result.message);
